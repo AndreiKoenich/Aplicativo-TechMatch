@@ -15,6 +15,7 @@ import DataBaseScreen from './src/components/DataBaseScreen';
 import MetodologiaScreen from './src/components/MetodologiaScreen';
 import RedesScreen from './src/components/RedesScreen';
 import CommerceScreen from './src/components/CommerceScreen';
+import AplicativoScreen from './src/components/AplicativoScreen';
 
 const Stack = createStackNavigator();
 
@@ -49,6 +50,7 @@ export default function App() {
         <Stack.Screen name="MetodologiaScreen" component={MetodologiaScreen} />
         <Stack.Screen name="RedesScreen" component={RedesScreen} />
         <Stack.Screen name="CommerceScreen" component={CommerceScreen} />
+        <Stack.Screen name="AplicativoScreen" component={AplicativoScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

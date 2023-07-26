@@ -12,6 +12,7 @@ import DataBaseScreen from '../DataBaseScreen';
 import MetodologiaScreen from '../MetodologiaScreen';
 import RedesScreen from '../RedesScreen';
 import CommerceScreen from '../CommerceScreen';
+import AplicativoScreen from '../AplicativoScreen';
 
 
 export default function Questionario({ route }) {
@@ -27,7 +28,7 @@ export default function Questionario({ route }) {
   const [experienciaMetodologia, setExperienciaMetodologia] = useState(''); 
   const [experienciaRedes, setExperienciaRedes] = useState(''); 
   const [experienciaCommerce, setExperienciaCommerce] = useState(''); 
-
+  const [experienciaAplicativo, setExperienciaAplicativo] = useState(''); 
 
   const handleEscolaridadePress = () => {
     navigation.navigate('EscolaridadeScreen');
@@ -73,6 +74,11 @@ export default function Questionario({ route }) {
     navigation.navigate('CommerceScreen', { experienciaCommerce, setExperienciaCommerce });
   };
 
+  const handleAplicativoPress = () => {
+    navigation.navigate('AplicativoScreen', { experienciaAplicativo, setExperienciaAplicativo });
+  };
+
+
   const updateInformation = () => {
     const escolaridadeValue = route.params?.escolaridade;
     const idadeValue = route.params?.idade;
@@ -83,8 +89,9 @@ export default function Questionario({ route }) {
     const tecnologiasEmergentesValue = route.params?.tecnologiasEmergentes;
     const experienciaBancoDadosValue = route.params?.experienciaBancoDados;
     const experienciaMetodologiaValue = route.params?.experienciaMetodologia;
-    const experienciaRedesValue = route.params?.experienciaRedes
-    const experienciaCommerceValue = route.params?.experienciaCommerce
+    const experienciaRedesValue = route.params?.experienciaRedes;
+    const experienciaCommerceValue = route.params?.experienciaCommerce;
+    const experienciaAplicativoValue = route.params?.experienciaCommerce;
 
 
     if (escolaridadeValue) {
@@ -124,6 +131,10 @@ export default function Questionario({ route }) {
 
       if (experienciaCommerceValue) {
         setExperienciaRedes(experienciaCommerceValue);
+      }
+
+      if (experienciaAplicativoValue) {
+        setExperienciaRedes(experienciaAplicativoValue);
       }
   };
 
@@ -242,6 +253,16 @@ export default function Questionario({ route }) {
         <TouchableOpacity style={styles.input} onPress={handleCommercePress}>
           <Text style={[styles.inputText, { color: experienciaCommerce ? 'black' : '#888' }]}>
             {experienciaCommerce ? experienciaCommerce : 'Pressione para escolher'}
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+
+      <View style={styles.perguntaContainer}>
+        <Text style={styles.pergunta}>Você possui experiência com desenvolvimento de aplicativos para dispositivos móveis?</Text>
+        <TouchableOpacity style={styles.input} onPress={handleAplicativoPress}>
+          <Text style={[styles.inputText, { color: experienciaAplicativo ? 'black' : '#888' }]}>
+            {experienciaAplicativo ? experienciaAplicativo : 'Pressione para escolher'}
           </Text>
         </TouchableOpacity>
       </View>
