@@ -3,7 +3,6 @@ import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-nati
 import { useNavigation } from '@react-navigation/native';
 
 const opcoesTempoExperiencia = [
-  'Nenhum',
   'Menos de um ano',
   '1 ano',
   '2 anos',
@@ -30,7 +29,7 @@ export default function TempoExperienciaScreen({ route }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.headerText}>Qual o seu tempo de experiência em programação?</Text>
+      <Text style={styles.headerText}>Quanto tempo de experiência com programação você possui?</Text>
       <ScrollView style={styles.scrollContainer}>
         {opcoesTempoExperiencia.map((opcao) => (
           <TouchableOpacity

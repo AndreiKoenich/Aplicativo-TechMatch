@@ -32,6 +32,7 @@ export default function Questionario({ route }) {
   const [experienciaCommerce, setExperienciaCommerce] = useState(''); 
   const [experienciaAplicativo, setExperienciaAplicativo] = useState(''); 
   const [experienciaLegados, setExperienciaLegados] = useState(''); 
+  const [dados, setDados] = useState({});
 
   const handleEscolaridadePress = () => {
     navigation.navigate('EscolaridadeScreen');
@@ -86,10 +87,25 @@ export default function Questionario({ route }) {
   };
 
   const handleResultadosPress = () => {
-    navigation.navigate('ResultadosScreen');
+    const dados = {
+      escolaridade,
+      idade,
+      linguagens,
+      sistemas,
+      tempoExperiencia,
+      frameworks,
+      tecnologiasEmergentes,
+      experienciaBancoDados,
+      experienciaMetodologia,
+      experienciaRedes,
+      experienciaCommerce,
+      experienciaAplicativo,
+      experienciaLegados,
+    };
+    setDados(dados);
+    navigation.navigate('ResultadosScreen', dados);
   };
-
-
+  
   const updateInformation = () => {
     const escolaridadeValue = route.params?.escolaridade;
     const idadeValue = route.params?.idade;
@@ -104,7 +120,6 @@ export default function Questionario({ route }) {
     const experienciaCommerceValue = route.params?.experienciaCommerce;
     const experienciaAplicativoValue = route.params?.experienciaAplicativo;
     const experienciaLegadosValue = route.params?.experienciaLegados;
-
 
     if (escolaridadeValue) {
       setEscolaridade(escolaridadeValue);

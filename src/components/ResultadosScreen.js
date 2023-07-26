@@ -1,7 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-export default function ResultadosScreen() {
+export default function ResultadosScreen({ route }) {
+  // Extrair os dados recebidos dos parâmetros da rota
+  const dados = route.params;
+
+  // Imprimir os dados no console
+  console.log('Dados recebidos:', dados);
+
   return (
     <View style={styles.container}>
       <Text style={styles.resultadosText}>Resultados</Text>

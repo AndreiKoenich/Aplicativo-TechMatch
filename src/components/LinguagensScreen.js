@@ -17,8 +17,6 @@ export default function LinguagensScreen({ route }) {
     'Go',
     'Kotlin',
     'Rust',
-    'Dart',
-    'Lua',
   ];
   const navigation = useNavigation();
 

@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-nati
 import { useNavigation } from '@react-navigation/native';
 
 export default function EscolaridadeScreen() {
-  const escolaridades = ['Ensino Médio', 'Graduação', 'Pós-Graduação', 'Mestrado', 'Doutorado'];
+  const escolaridades = ['Ensino Médio', 'Graduação', 'Mestrado', 'Doutorado'];
   const navigation = useNavigation();
 
   const handleEscolaridadePress = (escolaridade) => {
@@ -13,7 +13,7 @@ export default function EscolaridadeScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.headerText}>Escolha sua escolaridade:</Text>
+      <Text style={styles.headerText}>Qual seu grau de formação?</Text>
       <ScrollView style={styles.scrollContainer}>
         {escolaridades.map((escolaridade) => (
           <TouchableOpacity
