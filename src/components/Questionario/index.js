@@ -9,6 +9,7 @@ import TempoExperienciaScreen from '../TempoExperiencaScreen';
 import FrameworkScreen from '../FrameworkScreen';
 import EmergentesScreen from '../EmergentesScreen';
 import DataBaseScreen from '../DataBaseScreen';
+import MetodologiaScreen from '../MetodologiaScreen';
 
 
 export default function Questionario({ route }) {
@@ -21,6 +22,7 @@ export default function Questionario({ route }) {
   const [frameworks, setFrameworks] = useState([]);
   const [tecnologiasEmergentes, setTecnologiasEmergentes] = useState([]);
   const [experienciaBancoDados, setExperienciaBancoDados] = useState(''); 
+  const [experienciaMetodologia, setExperienciaMetodologia] = useState(''); 
 
 
   const handleEscolaridadePress = () => {
@@ -57,6 +59,11 @@ export default function Questionario({ route }) {
     navigation.navigate('DataBaseScreen', { experienciaBancoDados, setExperienciaBancoDados });
   };
 
+  const handleMetodologiaPress = () => {
+    // Navegue para a tela de EmergenteScreen
+    navigation.navigate('MetodologiaScreen', { experienciaMetodologia, setExperienciaMetodologia });
+  };
+
   const updateInformation = () => {
     const escolaridadeValue = route.params?.escolaridade;
     const idadeValue = route.params?.idade;
@@ -66,6 +73,7 @@ export default function Questionario({ route }) {
     const frameworksValue = route.params?.frameworks;
     const tecnologiasEmergentesValue = route.params?.tecnologiasEmergentes;
     const experienciaBancoDadosValue = route.params?.experienciaBancoDados;
+    const experienciaMetodologiaValue = route.params?.experienciaMetodologia;
 
 
     if (escolaridadeValue) {
@@ -92,7 +100,11 @@ export default function Questionario({ route }) {
       }
 
     if (experienciaBancoDadosValue) {
-        setTecnologiasEmergentes(experienciaBancoDadosValue);
+        setExperienciaBancoDados(experienciaBancoDadosValue);
+      }
+
+      if (experienciaMetodologiaValue) {
+        setExperienciaMetodologia(experienciaMetodologiaValue);
       }
   };
 
@@ -180,10 +192,19 @@ export default function Questionario({ route }) {
       </View>
 
       <View style={styles.perguntaContainer}>
-        <Text style={styles.pergunta}>Você tem experiência com gerenciamento de banco de dados?</Text>
+        <Text style={styles.pergunta}>Você possui experiência com gerenciamento de banco de dados?</Text>
         <TouchableOpacity style={styles.input} onPress={handleDataBasePress}>
           <Text style={[styles.inputText, { color: experienciaBancoDados ? 'black' : '#888' }]}>
             {experienciaBancoDados ? experienciaBancoDados : 'Pressione para escolher'}
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.perguntaContainer}>
+        <Text style={styles.pergunta}>Você já participou de projetos de desenvolvimento ágil ou metodologias similares?</Text>
+        <TouchableOpacity style={styles.input} onPress={handleMetodologiaPress}>
+          <Text style={[styles.inputText, { color: experienciaMetodologia ? 'black' : '#888' }]}>
+            {experienciaMetodologia ? experienciaMetodologia : 'Pressione para escolher'}
           </Text>
         </TouchableOpacity>
       </View>

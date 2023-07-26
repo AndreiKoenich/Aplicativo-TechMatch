@@ -2,57 +2,54 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
-export default function DataBaseScreen() {
-  const [experienciaBancoDados, setExperienciaBancoDados] = useState('');
+export default function MetodologiaScreen() {
+  const [experienciaMetodologia, setExperienciaMetodologia] = useState('');
   const navigation = useNavigation();
   const route = useRoute();
 
   useEffect(() => {
-    // Envia a experiência com gerenciamento de banco de dados selecionada de volta para a tela do Questionario
-    route.params?.setExperienciaBancoDados(experienciaBancoDados);
-  }, [experienciaBancoDados, route.params]);
+    route.params?.setExperienciaMetodologia(experienciaMetodologia);
+  }, [experienciaMetodologia, route.params]);
 
   const handleExperienciaPress = (experiencia) => {
-    // Define a experiência com gerenciamento de banco de dados selecionada
-    setExperienciaBancoDados(experiencia);
+    setExperienciaMetodologia(experiencia);
 
-    // Navega de volta para a tela do Questionario após a seleção
     navigation.goBack();
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.headerText}>Você possui experiência com gerenciamento de banco de dados?</Text>
+      <Text style={styles.headerText}>Você já participou de projetos de desenvolvimento ágil ou metodologias similares?</Text>
       <TouchableOpacity
         style={[
           styles.experienciaItem,
-          experienciaBancoDados === 'Possuo' && styles.experienciaItemSelecionado,
+          experienciaMetodologia === 'Já participei' && styles.experienciaItemSelecionado,
         ]}
-        onPress={() => handleExperienciaPress('Possuo')}
+        onPress={() => handleExperienciaPress('Já participei')}
       >
         <Text
           style={[
             styles.experienciaText,
-            experienciaBancoDados === 'Possuo' && styles.experienciaTextSelecionado,
+            experienciaMetodologia === 'Já participei' && styles.experienciaTextSelecionado,
           ]}
         >
-          Possuo
+          Já participei
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={[
           styles.experienciaItem,
-          experienciaBancoDados === 'Não possuo' && styles.experienciaItemSelecionado,
+          experienciaMetodologia === 'Não participei' && styles.experienciaItemSelecionado,
         ]}
-        onPress={() => handleExperienciaPress('Não possuo')}
+        onPress={() => handleExperienciaPress('Não participei')}
       >
         <Text
           style={[
             styles.experienciaText,
-            experienciaBancoDados === 'Não possuo' && styles.experienciaTextSelecionado,
+            experienciaMetodologia === 'Não participei' && styles.experienciaTextSelecionado,
           ]}
         >
-          Não possuo
+          Não participei
         </Text>
       </TouchableOpacity>
     </View>
