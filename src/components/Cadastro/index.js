@@ -8,7 +8,6 @@ export default function Cadastro({ route }) {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [estado, setEstado] = useState('');
-  const [cidade, setCidade] = useState('');
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
 
   useEffect(() => {
@@ -18,12 +17,12 @@ export default function Cadastro({ route }) {
   }, [route.params]);
 
   useEffect(() => {
-    if (nome && email && escolaridade && estado && cidade) {
+    if (nome && email && escolaridade && estado) {
       setIsButtonEnabled(true);
     } else {
       setIsButtonEnabled(false);
     }
-  }, [nome, email, escolaridade, estado, cidade]);
+  }, [nome, email, escolaridade, estado]);
 
   const handleCriarPerfilPress = () => {
     console.log('Perfil criado com os seguintes dados:');
@@ -31,7 +30,6 @@ export default function Cadastro({ route }) {
     console.log('E-mail:', email);
     console.log('Escolaridade:', escolaridade);
     console.log('Estado:', estado);
-    console.log('Cidade:', cidade);
   };
 
   return (
@@ -66,12 +64,6 @@ export default function Cadastro({ route }) {
         placeholder="Estado"
         value={estado}
         onChangeText={(text) => setEstado(text)}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Cidade"
-        value={cidade}
-        onChangeText={(text) => setCidade(text)}
       />
 
       <TouchableOpacity
@@ -142,7 +134,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ccc',
   },
   buttonEnabledText: {
-    color: 'black', // Cor do texto do botão quando está habilitado
+    color: 'white', // Cor do texto do botão quando está habilitado
   },
   buttonDisabledText: {
     color: '#888', // Cor do texto do botão quando está desabilitado
