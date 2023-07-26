@@ -2,26 +2,26 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-export default function EscolaridadeScreen() {
-  const escolaridades = ['Ensino Médio', 'Graduação', 'Pós-Graduação', 'Mestrado', 'Doutorado'];
+export default function IdadeScreen() {
+  const idades = Array.from({ length: 50 }, (_, index) => index + 16); // Gera um array com idades de 16 a 65 anos
   const navigation = useNavigation();
 
-  const handleEscolaridadePress = (escolaridade) => {
-    // Navegue para a tela de Questionario e envie a escolaridade como parâmetro
-    navigation.navigate('Questionario', { escolaridade: escolaridade });
+  const handleIdadePress = (idade) => {
+    // Navegue para a tela de Questionario e envie a idade como parâmetro
+    navigation.navigate('Questionario', { idade: idade });
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.headerText}>Escolha sua escolaridade:</Text>
+      <Text style={styles.headerText}>Escolha sua idade:</Text>
       <ScrollView style={styles.scrollContainer}>
-        {escolaridades.map((escolaridade) => (
+        {idades.map((idade) => (
           <TouchableOpacity
-            key={escolaridade}
-            style={styles.escolaridadeItem}
-            onPress={() => handleEscolaridadePress(escolaridade)}
+            key={idade}
+            style={styles.idadeItem}
+            onPress={() => handleIdadePress(idade)}
           >
-            <Text style={styles.escolaridadeText}>{escolaridade}</Text>
+            <Text style={styles.idadeText}>{idade} anos</Text>
           </TouchableOpacity>
         ))}
       </ScrollView>
@@ -43,10 +43,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   scrollContainer: {
-    flex: 1, // Ocupa todo o espaço disponível para permitir a rolagem
+    flex: 1,
     marginTop: 20,
   },
-  escolaridadeItem: {
+  idadeItem: {
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 5,
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginBottom: 10,
   },
-  escolaridadeText: {
+  idadeText: {
     fontSize: 16,
   },
 });

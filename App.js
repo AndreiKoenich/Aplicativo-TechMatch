@@ -3,8 +3,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import TelaInicial from './src/components';
 import Cadastro from './src/components/Cadastro';
-import EscolaridadeScreen from './src/components/EscolaridadeScreen'; 
-import EstadoScreen from './src/components/EstadoScreen'; 
+import Questionario from './src/components/Questionario';
+import EscolaridadeScreen from './src/components/EscolaridadeScreen';
+import IdadeScreen from './src/components/IdadeScreen';
 
 const Stack = createStackNavigator();
 
@@ -12,7 +13,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="TelaInicial"
+        initialRouteName="Questionario"
         screenOptions={{
           headerShown: false,
         }}
@@ -27,10 +28,9 @@ export default function App() {
             headerLeft: () => null,
           }}
         />
-        <Stack.Screen
-          name="EscolaridadeScreen"
-          component={EscolaridadeScreen} // Passa o componente EscolaridadeScreen como componente da Screen
-        />
+        <Stack.Screen name="Questionario" component={Questionario} />
+        <Stack.Screen name="EscolaridadeScreen" component={EscolaridadeScreen} />
+        <Stack.Screen name="IdadeScreen" component={IdadeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
