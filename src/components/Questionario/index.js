@@ -8,6 +8,7 @@ import SistemasScreen from '../SistemasScreen';
 import TempoExperienciaScreen from '../TempoExperiencaScreen';
 import FrameworkScreen from '../FrameworkScreen';
 import EmergentesScreen from '../EmergentesScreen';
+import DataBaseScreen from '../DataBaseScreen';
 
 
 export default function Questionario({ route }) {
@@ -18,7 +19,8 @@ export default function Questionario({ route }) {
   const [sistemas, setSistemas] = useState('');
   const [tempoExperiencia, setTempoExperiencia] = useState('');
   const [frameworks, setFrameworks] = useState([]);
-  const [tecnologiasEmergentes, setTecnologiasEmergentes] = useState([]); // Novo estado para as tecnologias selecionadas
+  const [tecnologiasEmergentes, setTecnologiasEmergentes] = useState([]);
+  const [experienciaBancoDados, setExperienciaBancoDados] = useState(''); 
 
 
   const handleEscolaridadePress = () => {
@@ -50,6 +52,11 @@ export default function Questionario({ route }) {
     navigation.navigate('EmergentesScreen', { tecnologiasEmergentes, setTecnologiasEmergentes });
   };
 
+  const handleDataBasePress = () => {
+    // Navegue para a tela de EmergenteScreen
+    navigation.navigate('DataBaseScreen', { experienciaBancoDados, setExperienciaBancoDados });
+  };
+
   const updateInformation = () => {
     const escolaridadeValue = route.params?.escolaridade;
     const idadeValue = route.params?.idade;
@@ -58,6 +65,7 @@ export default function Questionario({ route }) {
     const tempoExperienciaValue = route.params?.tempoExperiencia;
     const frameworksValue = route.params?.frameworks;
     const tecnologiasEmergentesValue = route.params?.tecnologiasEmergentes;
+    const experienciaBancoDadosValue = route.params?.experienciaBancoDados;
 
 
     if (escolaridadeValue) {
@@ -81,6 +89,10 @@ export default function Questionario({ route }) {
 
     if (tecnologiasEmergentesValue) {
         setTecnologiasEmergentes(tecnologiasEmergentesValue);
+      }
+
+    if (experienciaBancoDadosValue) {
+        setTecnologiasEmergentes(experienciaBancoDadosValue);
       }
   };
 
@@ -166,6 +178,16 @@ export default function Questionario({ route }) {
           </Text>
         </TouchableOpacity>
       </View>
+
+      <View style={styles.perguntaContainer}>
+        <Text style={styles.pergunta}>Você tem experiência com gerenciamento de banco de dados?</Text>
+        <TouchableOpacity style={styles.input} onPress={handleDataBasePress}>
+          <Text style={[styles.inputText, { color: experienciaBancoDados ? 'black' : '#888' }]}>
+            {experienciaBancoDados ? experienciaBancoDados : 'Pressione para escolher'}
+          </Text>
+        </TouchableOpacity>
+      </View>
+
 
       {/* Continuar adicionando as demais perguntas */}
     </ScrollView>
