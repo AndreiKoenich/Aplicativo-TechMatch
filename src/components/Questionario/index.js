@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import LinguagensScreen from '../LinguagensScreen';
+import TempoExperienciaScreen from '../TempoExperiencaScreen';
 
 export default function Questionario({ route }) {
   const navigation = useNavigation();
   const [escolaridade, setEscolaridade] = useState('');
   const [idade, setIdade] = useState('');
   const [linguagens, setLinguagens] = useState([]);
-  const [sistemas, setSistemas] = useState([]); // Modificação: Estado para armazenar os sistemas selecionados
+  const [sistemas, setSistemas] = useState('');
+  const [tempoExperiencia, setTempoExperiencia] = useState('');
 
   const handleEscolaridadePress = () => {
     navigation.navigate('EscolaridadeScreen');
@@ -23,14 +25,19 @@ export default function Questionario({ route }) {
   };
 
   const handleSistemasPress = () => {
-    navigation.navigate('SistemasScreen', { sistemas, setSistemas }); // Passando o estado e a função para a tela de SistemasScreen
+    navigation.navigate('SistemasScreen', { sistemas, setSistemas });
+  };
+
+  const handleTempoExperienciaPress = () => {
+    navigation.navigate('TempoExperienciaScreen', { setTempoExperiencia });
   };
 
   const updateInformation = () => {
     const escolaridadeValue = route.params?.escolaridade;
     const idadeValue = route.params?.idade;
     const linguagensValue = route.params?.linguagens;
-    const sistemasValue = route.params?.sistemas; // Modificação: Receber os sistemas selecionados
+    const sistemasValue = route.params?.sistemas;
+    const tempoExperienciaValue = route.params?.tempoExperiencia;
 
     if (escolaridadeValue) {
       setEscolaridade(escolaridadeValue);
@@ -42,7 +49,10 @@ export default function Questionario({ route }) {
       setLinguagens(linguagensValue);
     }
     if (sistemasValue) {
-      setSistemas(sistemasValue); // Modificação: Atualizar os sistemas selecionados
+      setSistemas(sistemasValue);
+    }
+    if (tempoExperienciaValue) {
+      setTempoExperiencia(tempoExperienciaValue);
     }
   };
 
@@ -82,7 +92,6 @@ export default function Questionario({ route }) {
         </TouchableOpacity>
       </View>
 
-      {/* Nova pergunta sobre as linguagens de programação */}
       <View style={styles.perguntaContainer}>
         <Text style={styles.pergunta}>Quais linguagens de programação você conhece?</Text>
         <TouchableOpacity style={styles.input} onPress={handleLinguagensPress}>
@@ -92,12 +101,21 @@ export default function Questionario({ route }) {
         </TouchableOpacity>
       </View>
 
-      {/* Nova pergunta sobre os sistemas operacionais */}
       <View style={styles.perguntaContainer}>
         <Text style={styles.pergunta}>Quais sistemas operacionais você conhece?</Text>
         <TouchableOpacity style={styles.input} onPress={handleSistemasPress}>
-          <Text style={[styles.inputText, { color: sistemas.length > 0 ? 'black' : '#888' }]}>
-            {sistemas.length > 0 ? sistemas.join(', ') : 'Pressione para escolher'}
+          <Text style={[styles.inputText, { color: sistemas ? 'black' : '#888' }]}>
+            {sistemas ? sistemas : 'Pressione para escolher'}
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Nova pergunta sobre o tempo de experiência em programação */}
+      <View style={styles.perguntaContainer}>
+        <Text style={styles.pergunta}>Qual o seu tempo de experiência em programação?</Text>
+        <TouchableOpacity style={styles.input} onPress={handleTempoExperienciaPress}>
+          <Text style={[styles.inputText, { color: tempoExperiencia ? 'black' : '#888' }]}>
+            {tempoExperiencia ? tempoExperiencia : 'Pressione para escolher'}
           </Text>
         </TouchableOpacity>
       </View>
@@ -112,7 +130,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     paddingHorizontal: 20,
     paddingTop: 40,
-    paddingBottom: 80, // Adicionando paddingBottom para que o conteúdo fique acima do teclado
+    paddingBottom: 80,
   },
   header: {
     backgroundColor: '#1E3799',
@@ -125,7 +143,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   perguntaContainer: {
-    marginTop: 20, // Espaço entre as perguntas
+    marginTop: 20,
   },
   pergunta: {
     fontSize: 18,
