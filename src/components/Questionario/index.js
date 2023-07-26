@@ -1,34 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import LinguagensScreen from '../LinguagensScreen'; // Importe a nova tela
+import LinguagensScreen from '../LinguagensScreen';
 
 export default function Questionario({ route }) {
   const navigation = useNavigation();
   const [escolaridade, setEscolaridade] = useState('');
   const [idade, setIdade] = useState('');
-  const [linguagens, setLinguagens] = useState([]); // Novo estado para as linguagens selecionadas
+  const [linguagens, setLinguagens] = useState([]);
+  const [sistemas, setSistemas] = useState([]); // Modificação: Estado para armazenar os sistemas selecionados
 
   const handleEscolaridadePress = () => {
-    // Navegue para a tela de EscolaridadeScreen
     navigation.navigate('EscolaridadeScreen');
   };
 
   const handleIdadePress = () => {
-    // Navegue para a tela de IdadeScreen
     navigation.navigate('IdadeScreen');
   };
 
   const handleLinguagensPress = () => {
-    // Navegue para a tela de LinguagensScreen
     navigation.navigate('LinguagensScreen');
   };
 
-  // Função para atualizar as informações após retornar das telas correspondentes
+  const handleSistemasPress = () => {
+    navigation.navigate('SistemasScreen', { sistemas, setSistemas }); // Passando o estado e a função para a tela de SistemasScreen
+  };
+
   const updateInformation = () => {
     const escolaridadeValue = route.params?.escolaridade;
     const idadeValue = route.params?.idade;
-    const linguagensValue = route.params?.linguagens; // Receber as linguagens selecionadas
+    const linguagensValue = route.params?.linguagens;
+    const sistemasValue = route.params?.sistemas; // Modificação: Receber os sistemas selecionados
 
     if (escolaridadeValue) {
       setEscolaridade(escolaridadeValue);
@@ -39,9 +41,11 @@ export default function Questionario({ route }) {
     if (linguagensValue) {
       setLinguagens(linguagensValue);
     }
+    if (sistemasValue) {
+      setSistemas(sistemasValue); // Modificação: Atualizar os sistemas selecionados
+    }
   };
 
-  // Chamando a função de atualização quando o componente é montado
   useEffect(() => {
     updateInformation();
   }, [route.params]);
@@ -84,6 +88,16 @@ export default function Questionario({ route }) {
         <TouchableOpacity style={styles.input} onPress={handleLinguagensPress}>
           <Text style={[styles.inputText, { color: linguagens.length > 0 ? 'black' : '#888' }]}>
             {linguagens.length > 0 ? linguagens.join(', ') : 'Pressione para escolher'}
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Nova pergunta sobre os sistemas operacionais */}
+      <View style={styles.perguntaContainer}>
+        <Text style={styles.pergunta}>Quais sistemas operacionais você conhece?</Text>
+        <TouchableOpacity style={styles.input} onPress={handleSistemasPress}>
+          <Text style={[styles.inputText, { color: sistemas.length > 0 ? 'black' : '#888' }]}>
+            {sistemas.length > 0 ? sistemas.join(', ') : 'Pressione para escolher'}
           </Text>
         </TouchableOpacity>
       </View>

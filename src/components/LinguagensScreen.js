@@ -16,6 +16,8 @@ const linguagens = [
   'Python',
   'R',
   'Ruby',
+  'Rust',
+  'SQL',
   'Swift',
   'TypeScript',
 ];
