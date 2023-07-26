@@ -21,7 +21,9 @@ export default function IdadeScreen() {
             style={styles.idadeItem}
             onPress={() => handleIdadePress(idade)}
           >
-            <Text style={styles.idadeText}>{idade} anos</Text>
+            <Text style={styles.idadeText}>
+              {idade === 65 ? '65 anos ou mais' : `${idade} anos`}
+            </Text>
           </TouchableOpacity>
         ))}
       </ScrollView>
