@@ -3,7 +3,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import TelaInicial from './src/components';
 import Cadastro from './src/components/Cadastro';
-import EscolaridadeScreen from './src/components/EscolaridadeScreen'; // Importe a tela de EscolaridadeScreen
+import EscolaridadeScreen from './src/components/EscolaridadeScreen'; 
+import EstadoScreen from './src/components/EstadoScreen'; 
 
 const Stack = createStackNavigator();
 
