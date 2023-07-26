@@ -125,7 +125,7 @@ export default function Questionario({ route }) {
 
       {/* Nova pergunta sobre o tempo de experiência */}
       <View style={styles.perguntaContainer}>
-        <Text style={styles.pergunta}>Quanto tempo de experiência você possui?</Text>
+        <Text style={styles.pergunta}>Quanto tempo de experiência com programação você possui?</Text>
         <TouchableOpacity style={styles.input} onPress={handleTempoExperienciaPress}>
           <Text style={[styles.inputText, { color: tempoExperiencia ? 'black' : '#888' }]}>
             {tempoExperiencia ? tempoExperiencia : 'Pressione para escolher'}
