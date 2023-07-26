@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import EscolaridadeScreen from '../EscolaridadeScreen';
+import IdadeScreen from '../IdadeScreen';
 import LinguagensScreen from '../LinguagensScreen';
+import SistemasScreen from '../SistemasScreen';
 import TempoExperienciaScreen from '../TempoExperiencaScreen';
+import FrameworkScreen from '../FrameworkScreen';
 
 export default function Questionario({ route }) {
   const navigation = useNavigation();
@@ -11,6 +15,7 @@ export default function Questionario({ route }) {
   const [linguagens, setLinguagens] = useState([]);
   const [sistemas, setSistemas] = useState('');
   const [tempoExperiencia, setTempoExperiencia] = useState('');
+  const [frameworks, setFrameworks] = useState([]);
 
   const handleEscolaridadePress = () => {
     navigation.navigate('EscolaridadeScreen');
@@ -29,7 +34,11 @@ export default function Questionario({ route }) {
   };
 
   const handleTempoExperienciaPress = () => {
-    navigation.navigate('TempoExperienciaScreen', { setTempoExperiencia });
+    navigation.navigate('TempoExperienciaScreen', { tempoExperiencia, setTempoExperiencia });
+  };
+
+  const handleFrameworksPress = () => {
+    navigation.navigate('FrameworkScreen', { frameworks, setFrameworks });
   };
 
   const updateInformation = () => {
@@ -38,6 +47,7 @@ export default function Questionario({ route }) {
     const linguagensValue = route.params?.linguagens;
     const sistemasValue = route.params?.sistemas;
     const tempoExperienciaValue = route.params?.tempoExperiencia;
+    const frameworksValue = route.params?.frameworks;
 
     if (escolaridadeValue) {
       setEscolaridade(escolaridadeValue);
@@ -53,6 +63,9 @@ export default function Questionario({ route }) {
     }
     if (tempoExperienciaValue) {
       setTempoExperiencia(tempoExperienciaValue);
+    }
+    if (frameworksValue) {
+      setFrameworks(frameworksValue);
     }
   };
 
@@ -105,17 +118,27 @@ export default function Questionario({ route }) {
         <Text style={styles.pergunta}>Quais sistemas operacionais você conhece?</Text>
         <TouchableOpacity style={styles.input} onPress={handleSistemasPress}>
           <Text style={[styles.inputText, { color: sistemas ? 'black' : '#888' }]}>
-            {sistemas ? sistemas : 'Pressione para escolher'}
+            {sistemas.length > 0 ? sistemas.join(', ') : 'Pressione para escolher'}
           </Text>
         </TouchableOpacity>
       </View>
 
-      {/* Nova pergunta sobre o tempo de experiência em programação */}
+      {/* Nova pergunta sobre o tempo de experiência */}
       <View style={styles.perguntaContainer}>
-        <Text style={styles.pergunta}>Qual o seu tempo de experiência em programação?</Text>
+        <Text style={styles.pergunta}>Quanto tempo de experiência você possui?</Text>
         <TouchableOpacity style={styles.input} onPress={handleTempoExperienciaPress}>
           <Text style={[styles.inputText, { color: tempoExperiencia ? 'black' : '#888' }]}>
             {tempoExperiencia ? tempoExperiencia : 'Pressione para escolher'}
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Nova pergunta sobre os frameworks e bibliotecas */}
+      <View style={styles.perguntaContainer}>
+        <Text style={styles.pergunta}>Quais frameworks e bibliotecas você conhece?</Text>
+        <TouchableOpacity style={styles.input} onPress={handleFrameworksPress}>
+          <Text style={[styles.inputText, { color: frameworks.length > 0 ? 'black' : '#888' }]}>
+            {frameworks.length > 0 ? frameworks.join(', ') : 'Pressione para escolher'}
           </Text>
         </TouchableOpacity>
       </View>
