@@ -2,38 +2,35 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
-export default function DataBaseScreen() {
-  const [experienciaBancoDados, setExperienciaBancoDados] = useState('');
+export default function RedesScreen() {
+  const [experienciaRedes, setExperienciaRedes] = useState('');
   const navigation = useNavigation();
   const route = useRoute();
 
   useEffect(() => {
-    // Envia a experiência com gerenciamento de banco de dados selecionada de volta para a tela do Questionario
-    route.params?.setExperienciaBancoDados(experienciaBancoDados);
-  }, [experienciaBancoDados, route.params]);
+    route.params?.setExperienciaRedes(experienciaRedes);
+  }, [experienciaRedes, route.params]);
 
-  const handleExperienciaPress = (experiencia) => {
-    // Define a experiência com gerenciamento de banco de dados selecionada
-    setExperienciaBancoDados(experiencia);
+  const handleRedesPress = (experiencia) => {
+    setExperienciaRedes(experiencia);
 
-    // Navega de volta para a tela do Questionario após a seleção
     navigation.goBack();
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.headerText}>Você possui experiência com gerenciamento de banco de dados?</Text>
+      <Text style={styles.headerText}>Você possui conhecimento sobre redes de computadores e protocolos de comunicação?</Text>
       <TouchableOpacity
         style={[
           styles.experienciaItem,
-          experienciaBancoDados === 'Sim' && styles.experienciaItemSelecionado,
+          experienciaRedes === 'Sim' && styles.experienciaItemSelecionado,
         ]}
-        onPress={() => handleExperienciaPress('Sim')}
+        onPress={() => handleRedesPress('Sim')}
       >
         <Text
           style={[
             styles.experienciaText,
-            experienciaBancoDados === 'Sim' && styles.experienciaTextSelecionado,
+            experienciaRedes === 'Sim' && styles.experienciaTextSelecionado,
           ]}
         >
           Sim
@@ -42,14 +39,14 @@ export default function DataBaseScreen() {
       <TouchableOpacity
         style={[
           styles.experienciaItem,
-          experienciaBancoDados === 'Não' && styles.experienciaItemSelecionado,
+          experienciaRedes === 'Não' && styles.experienciaItemSelecionado,
         ]}
-        onPress={() => handleExperienciaPress('Não')}
+        onPress={() => handleRedesPress('Não')}
       >
         <Text
           style={[
             styles.experienciaText,
-            experienciaBancoDados === 'Não' && styles.experienciaTextSelecionado,
+            experienciaRedes === 'Não' && styles.experienciaTextSelecionado,
           ]}
         >
           Não

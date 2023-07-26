@@ -10,6 +10,7 @@ import FrameworkScreen from '../FrameworkScreen';
 import EmergentesScreen from '../EmergentesScreen';
 import DataBaseScreen from '../DataBaseScreen';
 import MetodologiaScreen from '../MetodologiaScreen';
+import RedesScreen from '../RedesScreen';
 
 
 export default function Questionario({ route }) {
@@ -23,6 +24,7 @@ export default function Questionario({ route }) {
   const [tecnologiasEmergentes, setTecnologiasEmergentes] = useState([]);
   const [experienciaBancoDados, setExperienciaBancoDados] = useState(''); 
   const [experienciaMetodologia, setExperienciaMetodologia] = useState(''); 
+  const [experienciaRedes, setExperienciaRedes] = useState(''); 
 
 
   const handleEscolaridadePress = () => {
@@ -64,6 +66,11 @@ export default function Questionario({ route }) {
     navigation.navigate('MetodologiaScreen', { experienciaMetodologia, setExperienciaMetodologia });
   };
 
+  const handleRedesPress = () => {
+    // Navegue para a tela de EmergenteScreen
+    navigation.navigate('RedesScreen', { experienciaMetodologia, setExperienciaRedes });
+  };
+
   const updateInformation = () => {
     const escolaridadeValue = route.params?.escolaridade;
     const idadeValue = route.params?.idade;
@@ -74,6 +81,7 @@ export default function Questionario({ route }) {
     const tecnologiasEmergentesValue = route.params?.tecnologiasEmergentes;
     const experienciaBancoDadosValue = route.params?.experienciaBancoDados;
     const experienciaMetodologiaValue = route.params?.experienciaMetodologia;
+    const experienciaRedesValue = route.params?.experienciaRedes
 
 
     if (escolaridadeValue) {
@@ -105,6 +113,10 @@ export default function Questionario({ route }) {
 
       if (experienciaMetodologiaValue) {
         setExperienciaMetodologia(experienciaMetodologiaValue);
+      }
+
+      if (experienciaRedesValue) {
+        setExperienciaRedes(experienciaRedesValue);
       }
   };
 
@@ -208,6 +220,16 @@ export default function Questionario({ route }) {
           </Text>
         </TouchableOpacity>
       </View>
+
+      <View style={styles.perguntaContainer}>
+        <Text style={styles.pergunta}>Você possui conhecimento sobre redes de computadores e protocolos de comunicação?</Text>
+        <TouchableOpacity style={styles.input} onPress={handleRedesPress}>
+          <Text style={[styles.inputText, { color: experienciaRedes ? 'black' : '#888' }]}>
+            {experienciaRedes ? experienciaRedes : 'Pressione para escolher'}
+          </Text>
+        </TouchableOpacity>
+      </View>
+
 
 
       {/* Continuar adicionando as demais perguntas */}

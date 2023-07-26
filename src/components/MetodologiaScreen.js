@@ -23,33 +23,33 @@ export default function MetodologiaScreen() {
       <TouchableOpacity
         style={[
           styles.experienciaItem,
-          experienciaMetodologia === 'Já participei' && styles.experienciaItemSelecionado,
+          experienciaMetodologia === 'Sim' && styles.experienciaItemSelecionado,
         ]}
-        onPress={() => handleExperienciaPress('Já participei')}
+        onPress={() => handleExperienciaPress('Sim')}
       >
         <Text
           style={[
             styles.experienciaText,
-            experienciaMetodologia === 'Já participei' && styles.experienciaTextSelecionado,
+            experienciaMetodologia === 'Sim' && styles.experienciaTextSelecionado,
           ]}
         >
-          Já participei
+          Sim
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={[
           styles.experienciaItem,
-          experienciaMetodologia === 'Não participei' && styles.experienciaItemSelecionado,
+          experienciaMetodologia === 'Não' && styles.experienciaItemSelecionado,
         ]}
-        onPress={() => handleExperienciaPress('Não participei')}
+        onPress={() => handleExperienciaPress('Não')}
       >
         <Text
           style={[
             styles.experienciaText,
-            experienciaMetodologia === 'Não participei' && styles.experienciaTextSelecionado,
+            experienciaMetodologia === 'Não' && styles.experienciaTextSelecionado,
           ]}
         >
-          Não participei
+          Não
         </Text>
       </TouchableOpacity>
     </View>
