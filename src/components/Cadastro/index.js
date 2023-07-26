@@ -1,32 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-export default function ProfileScreen() {
-  const escolaridades = ['Ensino Médio', 'Graduação', 'Pós-Graduação', 'Mestrado', 'Doutorado'];
+
+export default function Cadastro({ route }) {
+  const navigation = useNavigation();
+  const [escolaridade, setEscolaridade] = useState('');
+
+  // Verifica se há escolaridade selecionada da tela EscolaridadeScreen
+  React.useEffect(() => {
+    if (route.params?.escolaridade) {
+      setEscolaridade(route.params.escolaridade);
+    }
+  }, [route.params]);
 
   return (
     <View style={styles.container}>
-      {/* Parte Superior */}
       <View style={styles.header}>
         <Text style={styles.headerText}>Cadastro</Text>
       </View>
 
-      {/* Quem é você */}
       <Text style={styles.sectionText}>Quem é você?</Text>
-
-      {/* Campo Nome */}
       <TextInput style={styles.input} placeholder="Nome" />
-
-      {/* Campo E-mail */}
       <TextInput style={styles.input} placeholder="E-mail" />
 
-      {/* Campo Escolaridade */}
-      <TextInput style={styles.input} placeholder="Escolaridade" />
+      {/* Mostra a escolaridade selecionada ou o campo de seleção */}
+      <TouchableOpacity style={styles.input} onPress={() => navigation.navigate('EscolaridadeScreen')}>
+        <Text style={styles.placeholderText}>{escolaridade || 'Escolaridade'}</Text>
+      </TouchableOpacity>
 
-      {/* Campo Estado */}
       <TextInput style={styles.input} placeholder="Estado" />
-
-      {/* Campo Cidade */}
       <TextInput style={styles.input} placeholder="Cidade" />
     </View>
   );
@@ -34,8 +37,7 @@ export default function ProfileScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#ffffff',
+    flex: 1,    backgroundColor: '#ffffff',
     paddingHorizontal: 20,
     paddingTop: 40,
   },

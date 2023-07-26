@@ -1,8 +1,9 @@
 import { StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator, HeaderBackButton } from '@react-navigation/stack'; // Importe o HeaderBackButton
+import { createStackNavigator } from '@react-navigation/stack';
 import TelaInicial from './src/components';
 import Cadastro from './src/components/Cadastro';
+import EscolaridadeScreen from './src/components/EscolaridadeScreen'; // Importe a tela de EscolaridadeScreen
 
 const Stack = createStackNavigator();
 
@@ -12,7 +13,7 @@ export default function App() {
       <Stack.Navigator
         initialRouteName="TelaInicial"
         screenOptions={{
-          headerShown: false // Esconda o cabeçalho de navegação padrão em todas as telas
+          headerShown: false,
         }}
       >
         <Stack.Screen name="TelaInicial" component={TelaInicial} />
@@ -20,10 +21,14 @@ export default function App() {
           name="Cadastro"
           component={Cadastro}
           options={{
-            headerShown: true, // Mostrar cabeçalho de navegação apenas na tela de Cadastro
-            headerTitle: '', // Remova o texto "Cadastro" do cabeçalho
-            headerLeft: () => null, // Remova o botão de voltar do cabeçalho
+            headerShown: true,
+            headerTitle: '',
+            headerLeft: () => null,
           }}
+        />
+        <Stack.Screen
+          name="EscolaridadeScreen"
+          component={EscolaridadeScreen} // Passa o componente EscolaridadeScreen como componente da Screen
         />
       </Stack.Navigator>
     </NavigationContainer>
