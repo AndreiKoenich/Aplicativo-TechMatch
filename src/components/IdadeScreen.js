@@ -1,14 +1,19 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 export default function IdadeScreen() {
   const idades = Array.from({ length: 50 }, (_, index) => index + 16); // Gera um array com idades de 16 a 65 anos
   const navigation = useNavigation();
+  const route = useRoute();
+  const idadeAnterior = route.params?.idade;
 
   const handleIdadePress = (idade) => {
+    // Verifica se a idade selecionada é "65 anos ou mais" para evitar duplicação de "anos"
+    const novaIdade = idadeAnterior ? (idade === '65 anos ou mais' ? idade : idade) : idade;
+
     // Navegue para a tela de Questionario e envie a idade como parâmetro
-    navigation.navigate('Questionario', { idade: idade });
+    navigation.navigate('Questionario', { idade: novaIdade });
   };
 
   return (
@@ -19,7 +24,7 @@ export default function IdadeScreen() {
           <TouchableOpacity
             key={idade}
             style={styles.idadeItem}
-            onPress={() => handleIdadePress(idade)}
+            onPress={() => handleIdadePress(idade === 65 ? '65 anos ou mais' : `${idade}`)}
           >
             <Text style={styles.idadeText}>
               {idade === 65 ? '65 anos ou mais' : `${idade} anos`}

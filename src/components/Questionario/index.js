@@ -34,6 +34,14 @@ export default function Questionario({ route }) {
     updateInformation();
   }, [route.params]);
 
+  const formatIdade = (idadeValue) => {
+    if (idadeValue === '65 anos ou mais') {
+      return '65 anos ou mais';
+    } else {
+      return idadeValue.concat(' anos')
+    }
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.header}>
@@ -44,7 +52,7 @@ export default function Questionario({ route }) {
         <Text style={styles.pergunta}>Qual a sua idade?</Text>
         <TouchableOpacity style={styles.input} onPress={handleIdadePress}>
           <Text style={[styles.inputText, { color: idade ? 'black' : '#888' }]}>
-            {idade ? `${idade} anos` : 'Pressione para escolher'}
+            {idade ? formatIdade(idade) : 'Pressione para escolher'}
           </Text>
         </TouchableOpacity>
       </View>
