@@ -11,6 +11,7 @@ import EmergentesScreen from '../EmergentesScreen';
 import DataBaseScreen from '../DataBaseScreen';
 import MetodologiaScreen from '../MetodologiaScreen';
 import RedesScreen from '../RedesScreen';
+import CommerceScreen from '../CommerceScreen';
 
 
 export default function Questionario({ route }) {
@@ -25,6 +26,7 @@ export default function Questionario({ route }) {
   const [experienciaBancoDados, setExperienciaBancoDados] = useState(''); 
   const [experienciaMetodologia, setExperienciaMetodologia] = useState(''); 
   const [experienciaRedes, setExperienciaRedes] = useState(''); 
+  const [experienciaCommerce, setExperienciaCommerce] = useState(''); 
 
 
   const handleEscolaridadePress = () => {
@@ -52,23 +54,23 @@ export default function Questionario({ route }) {
   };
 
   const handleTecnologiasEmergentesPress = () => {
-    // Navegue para a tela de EmergenteScreen
     navigation.navigate('EmergentesScreen', { tecnologiasEmergentes, setTecnologiasEmergentes });
   };
 
   const handleDataBasePress = () => {
-    // Navegue para a tela de EmergenteScreen
     navigation.navigate('DataBaseScreen', { experienciaBancoDados, setExperienciaBancoDados });
   };
 
   const handleMetodologiaPress = () => {
-    // Navegue para a tela de EmergenteScreen
     navigation.navigate('MetodologiaScreen', { experienciaMetodologia, setExperienciaMetodologia });
   };
 
   const handleRedesPress = () => {
-    // Navegue para a tela de EmergenteScreen
     navigation.navigate('RedesScreen', { experienciaMetodologia, setExperienciaRedes });
+  };
+
+  const handleCommercePress = () => {
+    navigation.navigate('CommerceScreen', { experienciaCommerce, setExperienciaCommerce });
   };
 
   const updateInformation = () => {
@@ -82,6 +84,7 @@ export default function Questionario({ route }) {
     const experienciaBancoDadosValue = route.params?.experienciaBancoDados;
     const experienciaMetodologiaValue = route.params?.experienciaMetodologia;
     const experienciaRedesValue = route.params?.experienciaRedes
+    const experienciaCommerceValue = route.params?.experienciaCommerce
 
 
     if (escolaridadeValue) {
@@ -117,6 +120,10 @@ export default function Questionario({ route }) {
 
       if (experienciaRedesValue) {
         setExperienciaRedes(experienciaRedesValue);
+      }
+
+      if (experienciaCommerceValue) {
+        setExperienciaRedes(experienciaCommerceValue);
       }
   };
 
@@ -230,7 +237,14 @@ export default function Questionario({ route }) {
         </TouchableOpacity>
       </View>
 
-
+      <View style={styles.perguntaContainer}>
+        <Text style={styles.pergunta}>Você possui experiência com projetos de e-commerce ou sistemas de pagamento online?</Text>
+        <TouchableOpacity style={styles.input} onPress={handleCommercePress}>
+          <Text style={[styles.inputText, { color: experienciaCommerce ? 'black' : '#888' }]}>
+            {experienciaCommerce ? experienciaCommerce : 'Pressione para escolher'}
+          </Text>
+        </TouchableOpacity>
+      </View>
 
       {/* Continuar adicionando as demais perguntas */}
     </ScrollView>

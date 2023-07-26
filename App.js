@@ -14,6 +14,7 @@ import EmergentesScreen from './src/components/EmergentesScreen';
 import DataBaseScreen from './src/components/DataBaseScreen';
 import MetodologiaScreen from './src/components/MetodologiaScreen';
 import RedesScreen from './src/components/RedesScreen';
+import CommerceScreen from './src/components/CommerceScreen';
 
 const Stack = createStackNavigator();
 
@@ -47,6 +48,7 @@ export default function App() {
         <Stack.Screen name="DataBaseScreen" component={DataBaseScreen} />
         <Stack.Screen name="MetodologiaScreen" component={MetodologiaScreen} />
         <Stack.Screen name="RedesScreen" component={RedesScreen} />
+        <Stack.Screen name="CommerceScreen" component={CommerceScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
