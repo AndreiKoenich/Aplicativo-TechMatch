@@ -6,6 +6,7 @@ import Cadastro from './src/components/Cadastro';
 import Questionario from './src/components/Questionario';
 import EscolaridadeScreen from './src/components/EscolaridadeScreen';
 import IdadeScreen from './src/components/IdadeScreen';
+import LinguagensScreen from './src/components/LinguagensScreen';
 
 const Stack = createStackNavigator();
 
@@ -31,6 +32,7 @@ export default function App() {
         <Stack.Screen name="Questionario" component={Questionario} />
         <Stack.Screen name="EscolaridadeScreen" component={EscolaridadeScreen} />
         <Stack.Screen name="IdadeScreen" component={IdadeScreen} />
+        <Stack.Screen name="LinguagensScreen" component={LinguagensScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

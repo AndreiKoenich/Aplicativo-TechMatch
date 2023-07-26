@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import LinguagensScreen from '../LinguagensScreen'; // Importe a nova tela
 
 export default function Questionario({ route }) {
   const navigation = useNavigation();
   const [escolaridade, setEscolaridade] = useState('');
   const [idade, setIdade] = useState('');
+  const [linguagens, setLinguagens] = useState([]); // Novo estado para as linguagens selecionadas
 
   const handleEscolaridadePress = () => {
     // Navegue para a tela de EscolaridadeScreen
@@ -17,15 +19,25 @@ export default function Questionario({ route }) {
     navigation.navigate('IdadeScreen');
   };
 
-  // Função para atualizar as informações de escolaridade e idade após retornar da tela correspondente
+  const handleLinguagensPress = () => {
+    // Navegue para a tela de LinguagensScreen
+    navigation.navigate('LinguagensScreen');
+  };
+
+  // Função para atualizar as informações após retornar das telas correspondentes
   const updateInformation = () => {
     const escolaridadeValue = route.params?.escolaridade;
     const idadeValue = route.params?.idade;
+    const linguagensValue = route.params?.linguagens; // Receber as linguagens selecionadas
+
     if (escolaridadeValue) {
       setEscolaridade(escolaridadeValue);
     }
     if (idadeValue) {
       setIdade(idadeValue);
+    }
+    if (linguagensValue) {
+      setLinguagens(linguagensValue);
     }
   };
 
@@ -38,7 +50,7 @@ export default function Questionario({ route }) {
     if (idadeValue === '65 anos ou mais') {
       return '65 anos ou mais';
     } else {
-      return idadeValue.concat(' anos')
+      return idadeValue.concat(' anos');
     }
   };
 
@@ -58,10 +70,20 @@ export default function Questionario({ route }) {
       </View>
 
       <View style={styles.perguntaContainer}>
-        <Text style={styles.pergunta}>Qual a sua escolaridade?</Text>
+        <Text style={styles.pergunta}>Qual o seu grau de formação?</Text>
         <TouchableOpacity style={styles.input} onPress={handleEscolaridadePress}>
           <Text style={[styles.inputText, { color: escolaridade ? 'black' : '#888' }]}>
             {escolaridade ? escolaridade : 'Pressione para escolher'}
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Nova pergunta sobre as linguagens de programação */}
+      <View style={styles.perguntaContainer}>
+        <Text style={styles.pergunta}>Quais linguagens de programação você conhece?</Text>
+        <TouchableOpacity style={styles.input} onPress={handleLinguagensPress}>
+          <Text style={[styles.inputText, { color: linguagens.length > 0 ? 'black' : '#888' }]}>
+            {linguagens.length > 0 ? linguagens.join(', ') : 'Pressione para escolher'}
           </Text>
         </TouchableOpacity>
       </View>
