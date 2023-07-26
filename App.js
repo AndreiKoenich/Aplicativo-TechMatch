@@ -16,6 +16,7 @@ import MetodologiaScreen from './src/components/MetodologiaScreen';
 import RedesScreen from './src/components/RedesScreen';
 import CommerceScreen from './src/components/CommerceScreen';
 import AplicativoScreen from './src/components/AplicativoScreen';
+import LegadosScreen from './src/components/LegadosScreen';
 
 const Stack = createStackNavigator();
 
@@ -51,6 +52,7 @@ export default function App() {
         <Stack.Screen name="RedesScreen" component={RedesScreen} />
         <Stack.Screen name="CommerceScreen" component={CommerceScreen} />
         <Stack.Screen name="AplicativoScreen" component={AplicativoScreen} />
+        <Stack.Screen name="LegadosScreen" component={LegadosScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
