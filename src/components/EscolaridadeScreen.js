@@ -7,9 +7,6 @@ export default function EscolaridadeScreen() {
   const navigation = useNavigation();
 
   const handleEscolaridadePress = (escolaridade) => {
-    // Realize qualquer lógica necessária com a escolaridade selecionada
-    console.log('Escolaridade selecionada:', escolaridade);
-
     // Navegue para a tela de Cadastro e envie a escolaridade como parâmetro
     navigation.navigate('Cadastro', { escolaridade: escolaridade });
   };
