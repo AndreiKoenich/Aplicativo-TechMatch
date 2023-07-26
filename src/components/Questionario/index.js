@@ -14,6 +14,7 @@ import RedesScreen from '../RedesScreen';
 import CommerceScreen from '../CommerceScreen';
 import AplicativoScreen from '../AplicativoScreen';
 import LegadosScreen from '../LegadosScreen';
+import ResultadosScreen from '../ResultadosScreen';
 
 
 export default function Questionario({ route }) {
@@ -82,6 +83,10 @@ export default function Questionario({ route }) {
 
   const handleLegadosPress = () => {
     navigation.navigate('LegadosScreen', { experienciaLegados, setExperienciaLegados });
+  };
+
+  const handleResultadosPress = () => {
+    navigation.navigate('ResultadosScreen');
   };
 
 
@@ -287,7 +292,12 @@ export default function Questionario({ route }) {
         </TouchableOpacity>
       </View>
 
-      {/* Continuar adicionando as demais perguntas */}
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.verificarButton} onPress={handleResultadosPress}>
+          <Text style={styles.verificarButtonText}>Verificar Resultados</Text>
+        </TouchableOpacity>
+      </View>
+
     </ScrollView>
   );
 }
@@ -327,5 +337,18 @@ const styles = StyleSheet.create({
   },
   inputText: {
     fontSize: 16,
+  },
+
+  verificarButton: {
+    backgroundColor: '#1E3799',
+    borderRadius: 5,
+    paddingVertical: 12,
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  verificarButtonText: {
+    color: '#ffffff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
