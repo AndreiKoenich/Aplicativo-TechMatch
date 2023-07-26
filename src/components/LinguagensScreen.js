@@ -2,65 +2,62 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const linguagens = [
-  'C',
-  'C++',
-  'C#',
-  'CSS',
-  'Go',
-  'HTML',
-  'Java',
-  'JavaScript',
-  'Kotlin',
-  'PHP',
-  'Python',
-  'R',
-  'Ruby',
-  'Rust',
-  'SQL',
-  'Swift',
-  'TypeScript',
-];
-
-export default function LinguagensScreen() {
+export default function LinguagensScreen({ route }) {
+  const [linguagensSelecionadas, setLinguagensSelecionadas] = useState([]);
+  const linguagensProgramacao = [
+    'JavaScript',
+    'Python',
+    'Java',
+    'C++',
+    'C#',
+    'TypeScript',
+    'Ruby',
+    'Swift',
+    'PHP',
+    'Go',
+    'Kotlin',
+    'Rust',
+    'Dart',
+    'Lua',
+  ];
   const navigation = useNavigation();
-  const [selectedLinguagens, setSelectedLinguagens] = useState([]);
 
   const handleLinguagemPress = (linguagem) => {
-    // Verifica se a linguagem já está selecionada e remove, ou adiciona à lista de selecionadas
-    const updatedLinguagens = selectedLinguagens.includes(linguagem)
-      ? selectedLinguagens.filter((lang) => lang !== linguagem)
-      : [...selectedLinguagens, linguagem];
+    // Verifica se a linguagem já está selecionada
+    const isSelected = linguagensSelecionadas.includes(linguagem);
 
-    setSelectedLinguagens(updatedLinguagens);
+    if (isSelected) {
+      // Se a linguagem já está selecionada, remove da lista de selecionadas
+      const updatedLinguagens = linguagensSelecionadas.filter((item) => item !== linguagem);
+      setLinguagensSelecionadas(updatedLinguagens);
+    } else {
+      // Se a linguagem não está selecionada, adiciona à lista de selecionadas
+      setLinguagensSelecionadas([...linguagensSelecionadas, linguagem]);
+    }
   };
 
-  const handleConcluirPress = () => {
+  const handleSalvarPress = () => {
     // Navegue para a tela de Questionario e envie as linguagens selecionadas como parâmetro
-    navigation.navigate('Questionario', { linguagens: selectedLinguagens });
+    navigation.navigate('Questionario', { linguagens: linguagensSelecionadas });
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>Quais linguagens de programação você conhece?</Text>
       <ScrollView style={styles.scrollContainer}>
-        {linguagens.map((linguagem) => (
+        {linguagensProgramacao.map((linguagem) => (
           <TouchableOpacity
             key={linguagem}
             style={[
               styles.linguagemItem,
-              {
-                backgroundColor: selectedLinguagens.includes(linguagem) ? '#1E3799' : '#ffffff',
-              },
+              linguagensSelecionadas.includes(linguagem) && styles.linguagemItemSelecionado,
             ]}
             onPress={() => handleLinguagemPress(linguagem)}
           >
             <Text
               style={[
                 styles.linguagemText,
-                {
-                  color: selectedLinguagens.includes(linguagem) ? '#ffffff' : '#000000',
-                },
+                linguagensSelecionadas.includes(linguagem) && styles.linguagemTextSelecionado,
               ]}
             >
               {linguagem}
@@ -68,8 +65,8 @@ export default function LinguagensScreen() {
           </TouchableOpacity>
         ))}
       </ScrollView>
-      <TouchableOpacity style={styles.concluirButton} onPress={handleConcluirPress}>
-        <Text style={styles.concluirButtonText}>Concluir</Text>
+      <TouchableOpacity style={styles.salvarButton} onPress={handleSalvarPress}>
+        <Text style={styles.salvarButtonText}>Salvar</Text>
       </TouchableOpacity>
     </View>
   );
@@ -100,18 +97,24 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginBottom: 10,
   },
+  linguagemItemSelecionado: {
+    backgroundColor: '#1E90FF',
+  },
   linguagemText: {
     fontSize: 16,
-    textAlign: 'center',
+    color: '#000000', // Cor do texto preto por padrão
   },
-  concluirButton: {
+  linguagemTextSelecionado: {
+    color: '#ffffff', // Cor do texto branco quando a opção está selecionada
+  },
+  salvarButton: {
     backgroundColor: '#1E3799',
     borderRadius: 5,
     paddingVertical: 12,
     alignItems: 'center',
     marginTop: 20,
   },
-  concluirButtonText: {
+  salvarButtonText: {
     color: '#ffffff',
     fontSize: 16,
     fontWeight: 'bold',

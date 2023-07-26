@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   selectedFrameworkItem: {
-    backgroundColor: '#1E3799',
+    backgroundColor: '#1E90FF',
     borderColor: '#1E3799',
   },
   frameworkText: {

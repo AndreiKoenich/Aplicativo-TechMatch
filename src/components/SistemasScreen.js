@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   sistemaSelecionado: {
-    backgroundColor: '#1E3799', // Cor de fundo quando selecionado
+    backgroundColor: '#1E90FF',
   },
   sistemaText: {
     fontSize: 16,

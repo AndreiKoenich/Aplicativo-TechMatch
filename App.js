@@ -10,6 +10,7 @@ import LinguagensScreen from './src/components/LinguagensScreen';
 import SistemasScreen from './src/components/SistemasScreen';
 import TempoExperienciaScreen from './src/components/TempoExperiencaScreen';
 import FrameworkScreen from './src/components/FrameworkScreen';
+import EmergentesScreen from './src/components/EmergentesScreen';
 
 const Stack = createStackNavigator();
 
@@ -39,6 +40,7 @@ export default function App() {
         <Stack.Screen name="SistemasScreen" component={SistemasScreen} />
         <Stack.Screen name="TempoExperienciaScreen" component={TempoExperienciaScreen} />
         <Stack.Screen name="FrameworkScreen" component={FrameworkScreen} />
+        <Stack.Screen name="EmergentesScreen" component={EmergentesScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

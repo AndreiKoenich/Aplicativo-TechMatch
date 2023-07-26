@@ -7,6 +7,8 @@ import LinguagensScreen from '../LinguagensScreen';
 import SistemasScreen from '../SistemasScreen';
 import TempoExperienciaScreen from '../TempoExperiencaScreen';
 import FrameworkScreen from '../FrameworkScreen';
+import EmergentesScreen from '../EmergentesScreen';
+
 
 export default function Questionario({ route }) {
   const navigation = useNavigation();
@@ -16,6 +18,8 @@ export default function Questionario({ route }) {
   const [sistemas, setSistemas] = useState('');
   const [tempoExperiencia, setTempoExperiencia] = useState('');
   const [frameworks, setFrameworks] = useState([]);
+  const [tecnologiasEmergentes, setTecnologiasEmergentes] = useState([]); // Novo estado para as tecnologias selecionadas
+
 
   const handleEscolaridadePress = () => {
     navigation.navigate('EscolaridadeScreen');
@@ -41,6 +45,11 @@ export default function Questionario({ route }) {
     navigation.navigate('FrameworkScreen', { frameworks, setFrameworks });
   };
 
+  const handleTecnologiasEmergentesPress = () => {
+    // Navegue para a tela de EmergenteScreen
+    navigation.navigate('EmergentesScreen', { tecnologiasEmergentes, setTecnologiasEmergentes });
+  };
+
   const updateInformation = () => {
     const escolaridadeValue = route.params?.escolaridade;
     const idadeValue = route.params?.idade;
@@ -48,6 +57,8 @@ export default function Questionario({ route }) {
     const sistemasValue = route.params?.sistemas;
     const tempoExperienciaValue = route.params?.tempoExperiencia;
     const frameworksValue = route.params?.frameworks;
+    const tecnologiasEmergentesValue = route.params?.tecnologiasEmergentes;
+
 
     if (escolaridadeValue) {
       setEscolaridade(escolaridadeValue);
@@ -67,6 +78,10 @@ export default function Questionario({ route }) {
     if (frameworksValue) {
       setFrameworks(frameworksValue);
     }
+
+    if (tecnologiasEmergentesValue) {
+        setTecnologiasEmergentes(tecnologiasEmergentesValue);
+      }
   };
 
   useEffect(() => {
@@ -139,6 +154,15 @@ export default function Questionario({ route }) {
         <TouchableOpacity style={styles.input} onPress={handleFrameworksPress}>
           <Text style={[styles.inputText, { color: frameworks.length > 0 ? 'black' : '#888' }]}>
             {frameworks.length > 0 ? frameworks.join(', ') : 'Pressione para escolher'}
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.perguntaContainer}>
+        <Text style={styles.pergunta}>Quais tecnologias emergentes você conhece?</Text>
+        <TouchableOpacity style={styles.input} onPress={handleTecnologiasEmergentesPress}>
+          <Text style={[styles.inputText, { color: tecnologiasEmergentes.length > 0 ? 'black' : '#888' }]}>
+            {tecnologiasEmergentes.length > 0 ? tecnologiasEmergentes.join(', ') : 'Pressione para escolher'}
           </Text>
         </TouchableOpacity>
       </View>
