@@ -1,41 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 
 export default function Cadastro({ route }) {
-  const navigation = useNavigation();
-  const [escolaridade, setEscolaridade] = useState('');
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
-  const [estado, setEstado] = useState('');
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
 
   useEffect(() => {
-    if (route.params?.escolaridade) {
-      setEscolaridade(route.params.escolaridade);
-    }
-  }, [route.params]);
-
-  useEffect(() => {
-    if (nome && email && escolaridade && estado) {
+    if (nome && email) {
       setIsButtonEnabled(true);
     } else {
       setIsButtonEnabled(false);
     }
-  }, [nome, email, escolaridade, estado]);
+  }, [nome, email]);
 
   const handleCriarPerfilPress = () => {
     console.log('Perfil criado com os seguintes dados:');
     console.log('Nome:', nome);
     console.log('E-mail:', email);
-    console.log('Escolaridade:', escolaridade);
-    console.log('Estado:', estado);
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>Cadastro</Text>
+        <Text style={styles.headerText}>Cadastrar Perfil</Text>
       </View>
 
       <Text style={styles.sectionText}>Quem é você?</Text>
@@ -50,20 +38,6 @@ export default function Cadastro({ route }) {
         placeholder="E-mail"
         value={email}
         onChangeText={(text) => setEmail(text)}
-      />
-
-      {/* Mostra a escolaridade selecionada ou o campo de seleção */}
-      <TouchableOpacity style={[styles.input, escolaridade ? styles.selectedEscolaridade : null]} onPress={() => navigation.navigate('EscolaridadeScreen')}>
-        <Text style={[styles.placeholderText, escolaridade ? styles.selectedText : null]}>
-          {escolaridade || 'Escolaridade'}
-        </Text>
-      </TouchableOpacity>
-
-      <TextInput
-        style={styles.input}
-        placeholder="Estado"
-        value={estado}
-        onChangeText={(text) => setEstado(text)}
       />
 
       <TouchableOpacity
@@ -117,12 +91,6 @@ const styles = StyleSheet.create({
   placeholderText: {
     color: '#888',
     fontSize: 16,
-  },
-  selectedEscolaridade: {
-    borderColor: 'black', // Cor da borda quando a escolaridade é selecionada
-  },
-  selectedText: {
-    color: 'black', // Cor do texto quando a escolaridade é selecionada
   },
   criarPerfilButton: {
     alignItems: 'center',
