@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
 import { encontrarVagaAdequada } from './AlgoritmoCorrespondencia';
 
-export default function ResultadosScreen({ route }) {
+export default function ResultadosScreen({ route, navigation }) {
   // Extrair os dados recebidos dos parâmetros da rota
   const dados = route.params;
 
@@ -10,7 +11,11 @@ export default function ResultadosScreen({ route }) {
   const vagaRecomendada = encontrarVagaAdequada(dados);
 
   // Imprimir a vaga recomendada no console para verificar
-  //console.log('Vaga recomendada:', vagaRecomendada);
+  console.log('Vaga recomendada:', vagaRecomendada);
+
+  const handleVoltarPerfil = () => {
+    navigation.navigate('PerfilScreen', { novoPerfil: dados });
+  };
 
   return (
     <View style={styles.container}>
@@ -29,6 +34,11 @@ export default function ResultadosScreen({ route }) {
 
           <Text style={styles.subtitulo}>Descrição:</Text>
           <Text style={styles.descricaoText}>{vagaRecomendada.descricao}</Text>
+
+          {/* Botão para voltar para a PerfilScreen */}
+          <TouchableOpacity style={[styles.button, styles.concluirButton]} onPress={handleVoltarPerfil}>
+            <Text style={styles.buttonText}>Concluir</Text>
+          </TouchableOpacity>
         </View>
       ) : (
         <Text style={styles.semVagaText}>Não há nenhuma vaga recomendada para o seu perfil.</Text>
@@ -79,5 +89,22 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginTop: 20,
     color: 'red',
+  },
+  button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 25,
+    paddingVertical: 15,
+    paddingHorizontal: 50,
+    marginTop: 30,
+    backgroundColor: '#1E3799',
+    alignSelf: 'center',
+  },
+  concluirButton: {
+    backgroundColor: '#1E3799',
+  },
+  buttonText: {
+    fontSize: 18,
+    color: 'white',
   },
 });

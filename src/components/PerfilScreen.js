@@ -36,9 +36,13 @@ export default function PerfilScreen({ route, navigation }) {
     }
   };
 
+  const handleRealizarTeste = () => {
+    navigation.navigate('Questionario');
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.headerText}>Bem-vindo de volta, {nomeUsuario}!</Text>
+      <Text style={styles.headerText}>Bem-vindo, {nomeUsuario}!</Text>
       <View style={styles.itemContainer}>
         <Text style={styles.label}>Nome:</Text>
         <Text style={styles.value}>{novoPerfil.nome}</Text>
@@ -53,7 +57,10 @@ export default function PerfilScreen({ route, navigation }) {
       </View>
 
       {/* Botões */}
-      <TouchableOpacity style={[styles.button, styles.realizarTesteButton]}>
+      <TouchableOpacity
+        style={[styles.button, styles.realizarTesteButton]}
+        onPress={handleRealizarTeste}
+      >
         <Text style={styles.buttonText}>Realizar teste</Text>
       </TouchableOpacity>
 
