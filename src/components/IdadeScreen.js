@@ -7,13 +7,16 @@ export default function IdadeScreen() {
   const navigation = useNavigation();
   const route = useRoute();
   const idadeAnterior = route.params?.idade;
-
+  
   const handleIdadePress = (idade) => {
     // Verifica se a idade selecionada é "65 anos ou mais" para evitar duplicação de "anos"
     const novaIdade = idadeAnterior ? (idade === '65 anos ou mais' ? idade : idade) : idade;
 
-    // Navegue para a tela de Questionario e envie a idade como parâmetro
-    navigation.navigate('Questionario', { idade: novaIdade });
+    // Chama a função de retorno fornecida por meio dos parâmetros da rota com a nova idade selecionada
+    route.params?.onIdadeSelecionada(novaIdade);
+
+    // Retorna à tela anterior (Cadastro)
+    navigation.goBack();
   };
 
   return (

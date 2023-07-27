@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import EscolaridadeScreen from '../EscolaridadeScreen';
-import IdadeScreen from '../IdadeScreen';
 import LinguagensScreen from '../LinguagensScreen';
 import SistemasScreen from '../SistemasScreen';
 import TempoExperienciaScreen from '../TempoExperiencaScreen';
@@ -20,7 +19,6 @@ import ResultadosScreen from '../ResultadosScreen';
 export default function Questionario({ route }) {
   const navigation = useNavigation();
   const [escolaridade, setEscolaridade] = useState('');
-  const [idade, setIdade] = useState('');
   const [linguagens, setLinguagens] = useState([]);
   const [sistemas, setSistemas] = useState('');
   const [tempoExperiencia, setTempoExperiencia] = useState('');
@@ -36,10 +34,6 @@ export default function Questionario({ route }) {
 
   const handleEscolaridadePress = () => {
     navigation.navigate('EscolaridadeScreen');
-  };
-
-  const handleIdadePress = () => {
-    navigation.navigate('IdadeScreen');
   };
 
   const handleLinguagensPress = () => {
@@ -89,7 +83,6 @@ export default function Questionario({ route }) {
   const handleResultadosPress = () => {
     const dados = {
       escolaridade,
-      idade,
       linguagens,
       sistemas,
       tempoExperiencia,
@@ -108,7 +101,6 @@ export default function Questionario({ route }) {
   
   const updateInformation = () => {
     const escolaridadeValue = route.params?.escolaridade;
-    const idadeValue = route.params?.idade;
     const linguagensValue = route.params?.linguagens;
     const sistemasValue = route.params?.sistemas;
     const tempoExperienciaValue = route.params?.tempoExperiencia;
@@ -123,9 +115,6 @@ export default function Questionario({ route }) {
 
     if (escolaridadeValue) {
       setEscolaridade(escolaridadeValue);
-    }
-    if (idadeValue) {
-      setIdade(idadeValue);
     }
     if (linguagensValue) {
       setLinguagens(linguagensValue);
@@ -173,27 +162,10 @@ export default function Questionario({ route }) {
     updateInformation();
   }, [route.params]);
 
-  const formatIdade = (idadeValue) => {
-    if (idadeValue === '65 anos ou mais') {
-      return '65 anos ou mais';
-    } else {
-      return idadeValue.concat(' anos');
-    }
-  };
-
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerText}>Conte-nos sobre você!</Text>
-      </View>
-
-      <View style={styles.perguntaContainer}>
-        <Text style={styles.pergunta}>Qual a sua idade?</Text>
-        <TouchableOpacity style={styles.input} onPress={handleIdadePress}>
-          <Text style={[styles.inputText, { color: idade ? 'black' : '#888' }]}>
-            {idade ? formatIdade(idade) : 'Pressione para escolher...'}
-          </Text>
-        </TouchableOpacity>
       </View>
 
       <View style={styles.perguntaContainer}>
