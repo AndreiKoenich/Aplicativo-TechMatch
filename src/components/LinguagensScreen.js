@@ -5,19 +5,24 @@ import { useNavigation } from '@react-navigation/native';
 export default function LinguagensScreen({ route }) {
   const [linguagensSelecionadas, setLinguagensSelecionadas] = useState([]);
   const linguagensProgramacao = [
-    'JavaScript',
-    'Python',
-    'Java',
+    'C',
     'C++',
     'C#',
-    'TypeScript',
-    'Ruby',
-    'Swift',
-    'PHP',
+    'CSS',
     'Go',
+    'HTML',
+    'Java',
+    'JavaScript',
     'Kotlin',
+    'PHP',
+    'Python',
+    'R',
+    'Ruby',
     'Rust',
+    'Swift',
+    'TypeScript',
   ];
+  
   const navigation = useNavigation();
 
   const handleLinguagemPress = (linguagem) => {

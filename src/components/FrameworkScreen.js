@@ -3,22 +3,27 @@ import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-nati
 import { useNavigation } from '@react-navigation/native';
 
 export default function FrameworkScreen({ route }) {
-  const frameworks = [
-    'Node JS (JavaScript Framework)',
-    'Express.js (JavaScript Framework)',
-    'Django (Python Framework)',
-    'Angular (JavaScript Framework)',
-    'React JS  (JavaScript Library)',
-    'React Native  (JavaScript Library)',
-    'Spring Boot  (JavaScript Framework)',
-    'Graph QL (JavaScript Library)',
-    'Bootstrap (CSS Framework)',
-    'Ruby on Rails  (Ruby Framework)',
-    'Flask (Python Framework)',
-    'jQuery  (JavaScript Library)',
-    'Android SDK',
-    'Symfony',
-  ];
+    const frameworks = [
+        'Android SDK',
+        'Angular (JavaScript Framework)',
+        'Bootstrap (CSS Framework)',
+        'Django (Python Framework)',
+        'Express.js (JavaScript Framework)',
+        'Flask (Python Framework)',
+        'Graph QL (JavaScript Library)',
+        'jQuery  (JavaScript Library)',
+        'JUnit (Java Framework)',
+        'Node JS (JavaScript Framework)',
+        'PyTest (Python Framework)',
+        'React JS  (JavaScript Library)',
+        'React Native  (JavaScript Library)',
+        'Ruby on Rails  (Ruby Framework)',
+        'Spring Boot  (JavaScript Framework)',
+        'Symfony',
+        'Unity (C# Framework)',
+        'Unreal Engine (C++ Framework)'
+      ];
+      
 
   const navigation = useNavigation();
   const [selectedFrameworks, setSelectedFrameworks] = useState(route.params?.frameworks || []);
