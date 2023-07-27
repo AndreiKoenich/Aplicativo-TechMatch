@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 export default function Cadastro() {
   const [nome, setNome] = useState('');
@@ -27,11 +29,26 @@ export default function Cadastro() {
     }
   }, [route.params?.idadeSelecionada]);
 
-  const handleCriarPerfilPress = () => {
+  const handleCriarPerfilPress = async () => {
     console.log('Perfil criado com os seguintes dados:');
     console.log('Nome:', nome);
     console.log('E-mail:', email);
     console.log('Idade:', idadeSelecionada);
+  
+    // Criar um objeto com os dados do perfil
+    const novoPerfil = {
+      nome,
+      email,
+      idade: idadeSelecionada,
+    };
+  
+    try {
+      // Armazenar o perfil no AsyncStorage
+      await AsyncStorage.setItem('perfil', JSON.stringify(novoPerfil));
+      console.log('Perfil armazenado com sucesso!');
+    } catch (error) {
+      console.log('Erro ao armazenar o perfil:', error);
+    }
   };
 
   const handleIdadePress = () => {
