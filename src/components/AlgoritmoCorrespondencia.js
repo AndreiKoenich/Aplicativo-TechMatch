@@ -1,4 +1,22 @@
-const vagas = {
+
+
+  const dadosUsuario = {
+    "escolaridade": "Doutorado",
+    "experienciaAplicativo": "Sim",
+    "experienciaBancoDados": "Sim",
+    "experienciaCommerce": "Sim",
+    "experienciaLegados": "Sim",
+    "experienciaMetodologia": "Sim",
+    "experienciaRedes": "Sim",
+    "frameworks": ["Graph QL (JavaScript Library)", "Flask (Python Framework)", "Express.js (JavaScript Framework)", "JUnit (Java Framework)"],
+    "idade": "17",
+    "linguagens": ["C#", "CSS", "Go"],
+    "sistemas": ["Windows", "UNIX", "macOS"],
+    "tecnologiasEmergentes": ["Internet das Coisas", "Inteligência Artificial", "Edge Computing"],
+    "tempoExperiencia": "4 anos"
+  };
+  
+  const vagas = {
     'Desenvolvedor Web': {
       descricao:
         'Desenvolvedor Web é responsável por criar e manter aplicações web, utilizando tecnologias como HTML, CSS, JavaScript e frameworks como React ou Angular. Além disso, trabalha com bancos de dados, serviços web e integração com APIs. É fundamental ter conhecimentos em programação e design para criar interfaces amigáveis e responsivas. Salário médio: R$ 6.000,00.',
@@ -11,7 +29,7 @@ const vagas = {
       experiencia_e_commerce: false,
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: false,
-      salario_medio: 6000,
+      salario_medio: 6067,
     },
     'Desenvolvedor Mobile': {
       descricao:
@@ -25,7 +43,7 @@ const vagas = {
       experiencia_e_commerce: false,
       experiencia_desenvolvimento_mobile: true,
       experiencia_migracao_legados: false,
-      salario_medio: 5500,
+      salario_medio: 3474,
     },
     'Engenheiro de Dados': {
       descricao:
@@ -39,7 +57,7 @@ const vagas = {
       experiencia_e_commerce: false,
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: false,
-      salario_medio: 7000,
+      salario_medio: 7701,
     },
     'Analista de Segurança da Informação': {
       descricao:
@@ -53,7 +71,7 @@ const vagas = {
       experiencia_e_commerce: false,
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: false,
-      salario_medio: 6500,
+      salario_medio: 6933,
     },
     'Arquiteto de Software': {
       descricao:
@@ -67,7 +85,7 @@ const vagas = {
       experiencia_e_commerce: false,
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: true,
-      salario_medio: 8000,
+      salario_medio: 5786,
     },
     'Analista de Business Intelligence': {
       descricao:
@@ -81,7 +99,7 @@ const vagas = {
       experiencia_e_commerce: false,
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: false,
-      salario_medio: 6000,
+      salario_medio: 4525,
     },
     'Desenvolvedor Front-end': {
       descricao:
@@ -95,7 +113,7 @@ const vagas = {
       experiencia_e_commerce: false,
       experiencia_desenvolvimento_mobile: true,
       experiencia_migracao_legados: false,
-      salario_medio: 5500,
+      salario_medio: 3036,
     },
     'Analista de Testes de Software': {
       descricao:
@@ -109,7 +127,7 @@ const vagas = {
       experiencia_e_commerce: false,
       experiencia_desenvolvimento_mobile: true,
       experiencia_migracao_legados: false,
-      salario_medio: 5000,
+      salario_medio: 4334,
     },
     'Desenvolvedor Full-stack': {
       descricao:
@@ -123,7 +141,7 @@ const vagas = {
       experiencia_e_commerce: true,
       experiencia_desenvolvimento_mobile: true,
       experiencia_migracao_legados: false,
-      salario_medio: 6500,
+      salario_medio: 5206,
     },
     'Engenheiro de Machine Learning': {
       descricao:
@@ -137,7 +155,7 @@ const vagas = {
       experiencia_e_commerce: false,
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: false,
-      salario_medio: 7000,
+      salario_medio: 7558,
     },
     'Desenvolvedor Back-end': {
       descricao:
@@ -151,7 +169,7 @@ const vagas = {
       experiencia_e_commerce: false,
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: false,
-      salario_medio: 6000,
+      salario_medio: 4995,
     },
     'Analista de Dados': {
       descricao:
@@ -165,7 +183,7 @@ const vagas = {
       experiencia_e_commerce: true,
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: false,
-      salario_medio: 6500,
+      salario_medio: 9900,
     },
 
     'Analista de Sistemas': {
@@ -180,7 +198,7 @@ const vagas = {
       experiencia_e_commerce: false,
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: false,
-      salario_medio: 6000,
+      salario_medio: 5116,
     },
     'Cientista de Dados': {
       descricao:
@@ -194,7 +212,7 @@ const vagas = {
       experiencia_e_commerce: false,
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: false,
-      salario_medio: 8000,
+      salario_medio: 8793,
     },
     'Especialista em Redes': {
       descricao:
@@ -208,7 +226,7 @@ const vagas = {
       experiencia_e_commerce: false,
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: false,
-      salario_medio: 7500,
+      salario_medio: 7611,
     },
     'Especialista em E-commerce': {
       descricao:
@@ -222,7 +240,7 @@ const vagas = {
       experiencia_e_commerce: true,
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: false,
-      salario_medio: 7000,
+      salario_medio: 5231,
     },
     'Analista de Suporte Técnico': {
       descricao:
@@ -236,7 +254,7 @@ const vagas = {
       experiencia_e_commerce: false,
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: true,
-      salario_medio: 4000,
+      salario_medio: 4747,
     },
     'Especialista em Segurança Cibernética': {
       descricao:
@@ -250,7 +268,7 @@ const vagas = {
       experiencia_e_commerce: false,
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: false,
-      salario_medio: 7500,
+      salario_medio: 9366,
     },
     'Desenvolvedor de Jogos': {
       descricao:
@@ -264,7 +282,7 @@ const vagas = {
       experiencia_e_commerce: false,
       experiencia_desenvolvimento_mobile: true,
       experiencia_migracao_legados: false,
-      salario_medio: 6000,
+      salario_medio: 3293,
     },
     'Analista de Qualidade de Software': {
       descricao:
@@ -278,7 +296,7 @@ const vagas = {
       experiencia_e_commerce: false,
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: false,
-      salario_medio: 5500,
+      salario_medio: 3621,
     },
     'Desenvolvedor de Realidade Virtual': {
       descricao:
@@ -292,7 +310,7 @@ const vagas = {
       experiencia_e_commerce: false,
       experiencia_desenvolvimento_mobile: true,
       experiencia_migracao_legados: false,
-      salario_medio: 6500,
+      salario_medio: 5252,
     },
     'Analista de Marketing Digital': {
       descricao:
@@ -306,6 +324,93 @@ const vagas = {
       experiencia_e_commerce: true,
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: false,
-      salario_medio: 6000,
+      salario_medio: 4108,
     },
   };
+  
+  function calcularPontuacao(vaga) {
+    let pontuacao = 0;
+  
+    // Verifica a escolaridade
+    if (dadosUsuario.escolaridade === vaga.escolaridade) {
+      pontuacao += 5;
+    }
+  
+    // Verifica a experiência com aplicativos
+    if (dadosUsuario.experienciaAplicativo === "Sim" && vaga.experiencia_desenvolvimento_mobile) {
+      pontuacao += 3;
+    }
+  
+    // Verifica a experiência com bancos de dados
+    if (dadosUsuario.experienciaBancoDados === "Sim" && vaga.experiencia_banco_dados) {
+      pontuacao += 4;
+    }
+  
+    // Verifica a experiência com projetos de e-commerce
+    if (dadosUsuario.experienciaCommerce === "Sim" && vaga.experiencia_e_commerce) {
+      pontuacao += 2;
+    }
+  
+    // Verifica a experiência com migração de sistemas legados
+    if (dadosUsuario.experienciaLegados === "Sim" && vaga.experiencia_migracao_legados) {
+      pontuacao += 3;
+    }
+  
+    // Verifica a experiência com metodologias ágeis
+    if (dadosUsuario.experienciaMetodologia === "Sim" && vaga.experiencia_desenvolvimento_agil) {
+      pontuacao += 4;
+    }
+  
+    // Verifica a experiência com redes de computadores
+    if (dadosUsuario.experienciaRedes === "Sim" && vaga.experiencia_redes) {
+      pontuacao += 4;
+    }
+  
+    // Verifica a intersecção entre as linguagens de programação da vaga e do usuário
+    const linguagensUsuario = new Set(dadosUsuario.linguagens);
+    const intersecaoLinguagens = vaga.linguagens.filter(linguagem => linguagensUsuario.has(linguagem));
+    pontuacao += intersecaoLinguagens.length;
+  
+    // Verifica a intersecção entre os frameworks da vaga e do usuário
+    const frameworksUsuario = new Set(dadosUsuario.frameworks);
+    const intersecaoFrameworks = vaga.frameworks.filter(framework => frameworksUsuario.has(framework));
+    pontuacao += intersecaoFrameworks.length;
+  
+    // Verifica a intersecção entre as tecnologias emergentes da vaga e do usuário
+    const tecnologiasUsuario = new Set(dadosUsuario.tecnologiasEmergentes);
+    const intersecaoTecnologias = vaga.tecnologias.filter(tecnologia => tecnologiasUsuario.has(tecnologia));
+    pontuacao += intersecaoTecnologias.length;
+  
+    // Verifica o tempo de experiência
+    if (dadosUsuario.tempoExperiencia === vaga.tempoExperiencia) {
+      pontuacao += 3;
+    }
+  
+    return pontuacao;
+  }
+  
+  // Função para encontrar a vaga mais adequada ao perfil do usuário
+  function encontrarVagaAdequada(dadosUsuario, vagas) {
+    let melhorPontuacao = -1;
+    let vagaAdequada = null;
+  
+    for (const [nomeVaga, vaga] of Object.entries(vagas)) {
+      const pontuacaoAtual = calcularPontuacao(vaga);
+  
+      if (pontuacaoAtual > melhorPontuacao) {
+        melhorPontuacao = pontuacaoAtual;
+        vagaAdequada = { nome: nomeVaga, descricao: vaga.descricao, salario_medio: vaga.salario_medio };
+      }
+    }
+  
+    return vagaAdequada;
+  }
+  
+  // Encontra a vaga mais adequada ao perfil do usuário
+  const vagaRecomendada = encontrarVagaAdequada(dadosUsuario, vagas);
+  
+  // Exibe a vaga recomendada
+  console.log("Vaga Recomendada:");
+  console.log("Nome:", vagaRecomendada.nome);
+  console.log("Descrição:", vagaRecomendada.descricao);
+  console.log("Salário Médio:", `R$ ${vagaRecomendada.salario_medio.toFixed(2)}`);
