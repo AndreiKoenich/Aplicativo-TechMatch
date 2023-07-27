@@ -18,6 +18,7 @@ import CommerceScreen from './src/components/CommerceScreen';
 import AplicativoScreen from './src/components/AplicativoScreen';
 import LegadosScreen from './src/components/LegadosScreen';
 import ResultadosScreen from './src/components/ResultadosScreen';
+import PerfilScreen from './src/components/PerfilScreen';
 
 const Stack = createStackNavigator();
 
@@ -40,6 +41,7 @@ export default function App() {
             headerLeft: () => null,
           }}
         />
+        <Stack.Screen name="PerfilScreen" component={PerfilScreen} />
         <Stack.Screen name="Questionario" component={Questionario} />
         <Stack.Screen name="EscolaridadeScreen" component={EscolaridadeScreen} />
         <Stack.Screen name="IdadeScreen" component={IdadeScreen} />

@@ -3,7 +3,6 @@ import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-nativ
 import { useNavigation, useRoute } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
 export default function Cadastro() {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
@@ -34,18 +33,19 @@ export default function Cadastro() {
     console.log('Nome:', nome);
     console.log('E-mail:', email);
     console.log('Idade:', idadeSelecionada);
-  
+
     // Criar um objeto com os dados do perfil
     const novoPerfil = {
       nome,
       email,
       idade: idadeSelecionada,
     };
-  
+
     try {
       // Armazenar o perfil no AsyncStorage
-      await AsyncStorage.setItem('perfil', JSON.stringify(novoPerfil));
+      await savePerfil(novoPerfil);
       console.log('Perfil armazenado com sucesso!');
+      navigation.navigate('TelaInicial'); // Redirecionar para a tela inicial após criar o perfil
     } catch (error) {
       console.log('Erro ao armazenar o perfil:', error);
     }
@@ -53,6 +53,22 @@ export default function Cadastro() {
 
   const handleIdadePress = () => {
     navigation.navigate('IdadeScreen', { idadeSelecionada, onIdadeSelecionada: setIdadeSelecionada });
+  };
+
+  const savePerfil = async (perfil) => {
+    try {
+      // Obter os perfis existentes do AsyncStorage
+      const perfisData = await AsyncStorage.getItem('perfis');
+      const perfisArray = perfisData ? JSON.parse(perfisData) : [];
+
+      // Adicionar o novo perfil à lista de perfis
+      perfisArray.push(perfil);
+
+      // Salvar a lista atualizada de perfis no AsyncStorage
+      await AsyncStorage.setItem('perfis', JSON.stringify(perfisArray));
+    } catch (error) {
+      throw new Error('Erro ao salvar perfil no AsyncStorage.');
+    }
   };
 
   return (
@@ -63,21 +79,24 @@ export default function Cadastro() {
 
       <Text style={styles.sectionText}>Quem é você?</Text>
       <TextInput
-        style={styles.input}
+        style={[styles.input, nome ? styles.textInputFilled : null]}
         placeholder="Nome"
         value={nome}
         onChangeText={(text) => setNome(text)}
       />
 
       {/* Campo para selecionar a idade */}
-      <TouchableOpacity style={[styles.input, idadeSelecionada ? styles.textInputSelected : null]} onPress={handleIdadePress}>
+      <TouchableOpacity
+        style={[styles.input, idadeSelecionada ? styles.textInputFilled : null]}
+        onPress={handleIdadePress}
+      >
         <Text style={[styles.placeholderText, idadeSelecionada ? styles.placeholderTextSelected : null]}>
           {idadeSelecionada ? (idadeSelecionada === '65 anos ou mais' ? '65 anos ou mais' : `${idadeSelecionada} anos`) : 'Idade'}
         </Text>
       </TouchableOpacity>
 
       <TextInput
-        style={styles.input}
+        style={[styles.input, email ? styles.textInputFilled : null]}
         placeholder="E-mail"
         value={email}
         onChangeText={(text) => setEmail(text)}
@@ -132,8 +151,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#000', // Cor do texto dos campos "Nome", "E-mail" e "Idade" antes da seleção
   },
-  textInputSelected: {
-    borderColor: '#ccc', // Cor da borda quando o campo está selecionado
+  textInputFilled: {
+    borderColor: 'black', // Cor da borda quando o campo está preenchido
   },
   placeholderText: {
     color: '#888',
