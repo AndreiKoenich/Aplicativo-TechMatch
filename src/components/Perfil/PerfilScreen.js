@@ -21,7 +21,7 @@ export default function PerfilScreen({ route, navigation }) {
   const handleExcluirPerfil = () => {
     Alert.alert(
       'Excluir Perfil',
-      'Deseja excluir o perfil?',
+      'Deseja excluir o perfil de ' + perfilAtual.nome + '?',
       [
         { text: 'Não', style: 'cancel' },
         { text: 'Sim', onPress: excluirPerfilConfirmado },
@@ -52,6 +52,23 @@ export default function PerfilScreen({ route, navigation }) {
     navigation.navigate('Questionario', { perfilAtual: perfilAtual, setResultado: setResultado });
   };
 
+  const handleVerResultado = async () => {
+    try {
+      const perfisData = await AsyncStorage.getItem('perfis');
+      const perfis = JSON.parse(perfisData);
+      const dadosPerfilAtual = perfis.find(perfil => perfil.name === perfilAtual.name)
+      if (dadosPerfilAtual, dadosPerfilAtual.resultado) {
+        navigation.navigate('ResultadosScreen', {
+          dados: dadosPerfilAtual.resultado, 
+          setResultado: setResultado, 
+          perfilAtual: perfilAtual
+        });
+      }
+    } catch (error) {
+      console.log('Erro ao atualizar resultado do perfil:', error);
+    }
+  };
+
   return (
     <View style={styles.container}>
         <Text style={styles.headerText}>Bem-vindo, {nome}!</Text>
@@ -64,7 +81,7 @@ export default function PerfilScreen({ route, navigation }) {
             <Text style={styles.buttonText}>Realizar teste</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={[styles.button, styles.actionButton]}>
+          <TouchableOpacity style={[styles.button, styles.actionButton]} onPress={handleVerResultado}>
             <Text style={styles.buttonText}>Ver último resultado</Text>
           </TouchableOpacity>
 

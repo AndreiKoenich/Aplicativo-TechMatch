@@ -12,6 +12,7 @@
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: false,
       salario_medio: 6067,
+      url: 'https://roadmap.sh/react'
     },
     'Desenvolvedor Mobile': {
       descricao:
@@ -372,17 +373,14 @@ export let encontrarVagaAdequada = function(dados) {
     return pontuacao;
   }
 
-  let melhorPontuacao = -1;
-  let vagaAdequada = null;
+  let vagasComPontuacao = [];
 
   for (const [nomeVaga, vaga] of Object.entries(vagas)) {
     const pontuacaoAtual = calcularPontuacao(vaga);
-
-    if (pontuacaoAtual > melhorPontuacao) {
-      melhorPontuacao = pontuacaoAtual;
-      vagaAdequada = { nome: nomeVaga, descricao: vaga.descricao, salario_medio: vaga.salario_medio };
-    }
+    vagasComPontuacao.push({ nome: nomeVaga, descricao: vaga.descricao, salario_medio: vaga.salario_medio, url: vaga.url ?? "https://roadmap.sh/roadmaps", pontuacao: pontuacaoAtual })
   }
 
-  return vagaAdequada;
+  vagasComPontuacao.sort((a, b) => { return b.pontuacao - a.pontuacao })
+
+  return vagasComPontuacao.slice(0,3);
 };
