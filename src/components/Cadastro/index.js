@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import { TextInput } from 'react-native-paper'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Cadastro() {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
-  const [idadeSelecionada, setIdadeSelecionada] = useState(null); // Estado para armazenar a idade selecionada
+  const [idadeSelecionada, setIdadeSelecionada] = useState(''); // Estado para armazenar a idade selecionada
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
 
   const navigation = useNavigation();
@@ -73,35 +74,36 @@ export default function Cadastro() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Cadastrar Perfil</Text>
+      <View>
+        <Text style={styles.sectionText}>Quem é você?</Text>
+        
+        <View style={styles.inputContainer}>
+          <TextInput
+            mode='outlined'
+            label="Nome"
+            activeOutlineColor='black'
+            value={nome}
+            onChangeText={(text) => setNome(text)}
+          />
+
+          <TextInput
+            mode='outlined'
+            keyboardType='number-pad'
+            label="Idade"
+            activeOutlineColor='black'
+            value={idadeSelecionada}
+            onChangeText={(text) => setIdadeSelecionada(text)}
+          />
+
+          <TextInput
+            mode='outlined'
+            label="E-mail"
+            activeOutlineColor='black'
+            value={email}
+            onChangeText={(text) => setEmail(text)}
+          />
+        </View>
       </View>
-
-      <Text style={styles.sectionText}>Quem é você?</Text>
-      <TextInput
-        style={[styles.input, nome ? styles.textInputFilled : null]}
-        placeholder="Nome"
-        value={nome}
-        onChangeText={(text) => setNome(text)}
-      />
-
-      {/* Campo para selecionar a idade */}
-      <TouchableOpacity
-        style={[styles.input, idadeSelecionada ? styles.textInputFilled : null]}
-        onPress={handleIdadePress}
-      >
-        <Text style={[styles.placeholderText, idadeSelecionada ? styles.placeholderTextSelected : null]}>
-          {idadeSelecionada ? (idadeSelecionada === '65 anos ou mais' ? '65 anos ou mais' : `${idadeSelecionada} anos`) : 'Idade'}
-        </Text>
-      </TouchableOpacity>
-
-      <TextInput
-        style={[styles.input, email ? styles.textInputFilled : null]}
-        placeholder="E-mail"
-        value={email}
-        onChangeText={(text) => setEmail(text)}
-      />
-
       <TouchableOpacity
         style={[
           styles.input,
@@ -122,9 +124,12 @@ export default function Cadastro() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'space-between',
     backgroundColor: '#ffffff',
     paddingHorizontal: 20,
-    paddingTop: 40,
+  },
+  inputContainer: {
+    marginTop: 32
   },
   header: {
     backgroundColor: '#1E3799',
@@ -137,9 +142,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   sectionText: {
-    fontSize: 18,
+    fontSize: 32,
+    textAlign: 'center',
     fontWeight: 'bold',
-    marginTop: 20,
+    marginTop: 16,
   },
   input: {
     borderWidth: 1,
@@ -163,9 +169,10 @@ const styles = StyleSheet.create({
   },
   criarPerfilButton: {
     alignItems: 'center',
+    marginBottom: 32,
   },
   buttonEnabled: {
-    backgroundColor: '#1E3799',
+    backgroundColor: '#000',
   },
   buttonDisabled: {
     backgroundColor: '#ccc',

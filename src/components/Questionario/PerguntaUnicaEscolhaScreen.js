@@ -2,26 +2,28 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-export default function EscolaridadeScreen() {
-  const escolaridades = ['Ensino Médio', 'Graduação', 'Mestrado', 'Doutorado'];
+export default function PerguntaUnicaEscolhaScreen({ route }) {
+  const {titulo, opcoesResposta, key, respostas, setRespostas} = route.params;
   const navigation = useNavigation();
 
-  const handleEscolaridadePress = (escolaridade) => {
-    // Navegue para a tela de Questionario e envie a escolaridade como parâmetro
-    navigation.navigate('Questionario', { escolaridade: escolaridade });
+  const handlePress = (resposta) => {
+    let respostasCopy = {...respostas}
+    respostasCopy[key] = resposta
+    setRespostas(respostasCopy)
+    navigation.goBack()
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.headerText}>Qual seu grau de formação?</Text>
+      <Text style={styles.headerText}>{titulo}</Text>
       <ScrollView style={styles.scrollContainer}>
-        {escolaridades.map((escolaridade) => (
+        {opcoesResposta.map((resposta) => (
           <TouchableOpacity
-            key={escolaridade}
-            style={styles.escolaridadeItem}
-            onPress={() => handleEscolaridadePress(escolaridade)}
+            key={resposta}
+            style={styles.respostaItem}
+            onPress={() => handlePress(resposta)}
           >
-            <Text style={styles.escolaridadeText}>{escolaridade}</Text>
+            <Text style={styles.respostaText}>{resposta}</Text>
           </TouchableOpacity>
         ))}
       </ScrollView>
@@ -46,7 +48,7 @@ const styles = StyleSheet.create({
     flex: 1, // Ocupa todo o espaço disponível para permitir a rolagem
     marginTop: 20,
   },
-  escolaridadeItem: {
+  respostaItem: {
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 5,
@@ -54,7 +56,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginBottom: 10,
   },
-  escolaridadeText: {
+  respostaText: {
     fontSize: 16,
   },
 });
