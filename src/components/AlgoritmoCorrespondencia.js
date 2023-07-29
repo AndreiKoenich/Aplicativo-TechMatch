@@ -27,6 +27,7 @@
       experiencia_desenvolvimento_mobile: true,
       experiencia_migracao_legados: false,
       salario_medio: 3474,
+      url: 'https://roadmap.sh/roadmaps',
     },
     'Engenheiro de Dados': {
       descricao:
@@ -41,6 +42,7 @@
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: false,
       salario_medio: 7701,
+      url: 'https://roadmap.sh/roadmaps',
     },
     'Analista de Segurança da Informação': {
       descricao:
@@ -55,6 +57,7 @@
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: false,
       salario_medio: 6933,
+      url: 'https://roadmap.sh/roadmaps',
     },
     'Arquiteto de Software': {
       descricao:
@@ -69,6 +72,7 @@
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: true,
       salario_medio: 5786,
+      url: 'https://roadmap.sh/roadmaps',
     },
     'Analista de Business Intelligence': {
       descricao:
@@ -83,6 +87,7 @@
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: false,
       salario_medio: 4525,
+      url: 'https://roadmap.sh/roadmaps',
     },
     'Desenvolvedor Front-end': {
       descricao:
@@ -97,6 +102,7 @@
       experiencia_desenvolvimento_mobile: true,
       experiencia_migracao_legados: false,
       salario_medio: 3036,
+      url: 'https://roadmap.sh/roadmaps',
     },
     'Analista de Testes de Software': {
       descricao:
@@ -111,6 +117,7 @@
       experiencia_desenvolvimento_mobile: true,
       experiencia_migracao_legados: false,
       salario_medio: 4334,
+      url: 'https://roadmap.sh/roadmaps',
     },
     'Desenvolvedor Full-stack': {
       descricao:
@@ -125,6 +132,7 @@
       experiencia_desenvolvimento_mobile: true,
       experiencia_migracao_legados: false,
       salario_medio: 5206,
+      url: 'https://roadmap.sh/roadmaps',
     },
     'Engenheiro de Machine Learning': {
       descricao:
@@ -139,6 +147,7 @@
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: false,
       salario_medio: 7558,
+      url: 'https://roadmap.sh/roadmaps',
     },
     'Desenvolvedor Back-end': {
       descricao:
@@ -153,6 +162,7 @@
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: false,
       salario_medio: 4995,
+      url: 'https://roadmap.sh/roadmaps',
     },
     'Analista de Dados': {
       descricao:
@@ -167,6 +177,7 @@
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: false,
       salario_medio: 9900,
+      url: 'https://roadmap.sh/roadmaps',
     },
 
     'Analista de Sistemas': {
@@ -182,6 +193,7 @@
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: false,
       salario_medio: 5116,
+      url: 'https://roadmap.sh/roadmaps',
     },
     'Cientista de Dados': {
       descricao:
@@ -196,6 +208,7 @@
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: false,
       salario_medio: 8793,
+      url: 'https://roadmap.sh/roadmaps',
     },
     'Especialista em Redes': {
       descricao:
@@ -210,6 +223,7 @@
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: false,
       salario_medio: 7611,
+      url: 'https://roadmap.sh/roadmaps',
     },
     'Especialista em E-commerce': {
       descricao:
@@ -224,6 +238,7 @@
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: false,
       salario_medio: 5231,
+      url: 'https://roadmap.sh/roadmaps',
     },
     'Analista de Suporte Técnico': {
       descricao:
@@ -238,6 +253,7 @@
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: true,
       salario_medio: 4747,
+      url: 'https://roadmap.sh/roadmaps',
     },
     'Especialista em Segurança Cibernética': {
       descricao:
@@ -252,6 +268,7 @@
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: false,
       salario_medio: 9366,
+      url: 'https://roadmap.sh/roadmaps',
     },
     'Desenvolvedor de Jogos': {
       descricao:
@@ -266,6 +283,7 @@
       experiencia_desenvolvimento_mobile: true,
       experiencia_migracao_legados: false,
       salario_medio: 3293,
+      url: 'https://roadmap.sh/roadmaps',
     },
     'Analista de Qualidade de Software': {
       descricao:
@@ -280,6 +298,7 @@
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: false,
       salario_medio: 3621,
+      url: 'https://roadmap.sh/roadmaps',
     },
     'Desenvolvedor de Realidade Virtual': {
       descricao:
@@ -294,6 +313,7 @@
       experiencia_desenvolvimento_mobile: true,
       experiencia_migracao_legados: false,
       salario_medio: 5252,
+      url: 'https://roadmap.sh/roadmaps',
     },
     'Analista de Marketing Digital': {
       descricao:
@@ -308,6 +328,7 @@
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: false,
       salario_medio: 4108,
+      url: 'https://roadmap.sh/roadmaps',
     },
   };
 
