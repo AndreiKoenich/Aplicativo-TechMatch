@@ -98,6 +98,9 @@ export default function Cadastro() {
           <TextInput
             mode='outlined'
             label="E-mail"
+            autoCompleteType="email"
+            keyboardType="email-address"
+            autoCapitalize="none" // Desativa letras maiúsculas automáticas
             activeOutlineColor='black'
             value={email}
             onChangeText={(text) => setEmail(text)}
