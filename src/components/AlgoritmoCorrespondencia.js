@@ -238,7 +238,7 @@
       experiencia_desenvolvimento_mobile: false,
       experiencia_migracao_legados: false,
       salario_medio: 5231,
-      url: 'https://roadmap.sh/roadmaps',
+      url: 'https://roadmap.sh/blockchain',
     },
     'Analista de Suporte Técnico': {
       descricao:
