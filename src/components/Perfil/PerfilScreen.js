@@ -56,7 +56,7 @@ export default function PerfilScreen({ route, navigation }) {
     try {
       const perfisData = await AsyncStorage.getItem('perfis');
       const perfis = JSON.parse(perfisData);
-      const dadosPerfilAtual = perfis.find(perfil => perfil.name === perfilAtual.name)
+      const dadosPerfilAtual = perfis.find(perfil => perfil.nome === perfilAtual.nome)
       if (dadosPerfilAtual, dadosPerfilAtual.resultado) {
         navigation.navigate('ResultadosScreen', {
           dados: dadosPerfilAtual.resultado, 
@@ -81,7 +81,7 @@ export default function PerfilScreen({ route, navigation }) {
             <Text style={styles.buttonText}>Realizar teste</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={[styles.button, styles.actionButton]} onPress={handleVerResultado}>
+          <TouchableOpacity style={[styles.button, perfilAtual.resultado !== undefined ? styles.actionButton : styles.buttonDisabled]} onPress={handleVerResultado}>
             <Text style={styles.buttonText}>Ver último resultado</Text>
           </TouchableOpacity>
 
@@ -156,5 +156,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: 'white',
     marginRight: 10,
+  },
+  buttonDisabled: {
+    backgroundColor: '#ccc',
   },
 });

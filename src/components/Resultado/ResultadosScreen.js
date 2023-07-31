@@ -12,7 +12,7 @@ export default function ResultadosScreen({ route, navigation }) {
   const dados = route.params.dados;
 
   // Chamar o algoritmo de correspondência passando os dados recebidos
-  const vagasRecomendadas = encontrarVagaAdequada(dados);
+  const vagasRecomendadas = encontrarVagaAdequada(dados, route.params.perfilAtual.nome);
 
   const chartConfig = {
     backgroundColor: "#e26a00",
@@ -52,6 +52,7 @@ export default function ResultadosScreen({ route, navigation }) {
   const updateResultado = async () => {
     try {
       // Obter os perfis do AsyncStorage
+      route.params.setResultado(dados)
       const perfisData = await AsyncStorage.getItem('perfis');
       const perfis = JSON.parse(perfisData);
       const novosPerfis = perfis.map( (perfil) => {
