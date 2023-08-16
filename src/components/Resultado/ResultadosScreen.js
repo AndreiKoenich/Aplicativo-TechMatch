@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, StatusBar, Dimensions, Linking } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useEffect, useState } from 'react';
+import { Dimensions, Linking, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { PieChart } from 'react-native-chart-kit';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { encontrarVagaAdequada } from '../AlgoritmoCorrespondencia';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import Legend from './Legend';
 
 export default function ResultadosScreen({ route, navigation }) {
@@ -31,6 +31,10 @@ export default function ResultadosScreen({ route, navigation }) {
     }
   }
 
+  const handleIndexPress = () => {
+    navigation.navigate('TelaInicial');
+  };
+
   const buildData = () => {
     colorIndexes = ["#ae2c29", "#332625", "#bcafb6"]
 
@@ -46,7 +50,7 @@ export default function ResultadosScreen({ route, navigation }) {
         legendFontSize: 12
       }
     })
-    
+
   };
 
   const updateResultado = async () => {
@@ -55,7 +59,7 @@ export default function ResultadosScreen({ route, navigation }) {
       route.params.setResultado(dados)
       const perfisData = await AsyncStorage.getItem('perfis');
       const perfis = JSON.parse(perfisData);
-      const novosPerfis = perfis.map( (perfil) => {
+      const novosPerfis = perfis.map((perfil) => {
         if (perfil.nome === route.params.perfilAtual.nome) {
           let perfilAtualizado = perfil
           perfilAtualizado.resultado = dados
@@ -63,17 +67,17 @@ export default function ResultadosScreen({ route, navigation }) {
         }
         return perfil
       });
-        await AsyncStorage.setItem('perfis', JSON.stringify(novosPerfis));
-  
-      } catch (error) {
-        console.log('Erro ao atualizar resultado do perfil:', error);
-      }
+      await AsyncStorage.setItem('perfis', JSON.stringify(novosPerfis));
+
+    } catch (error) {
+      console.log('Erro ao atualizar resultado do perfil:', error);
+    }
   };
   useEffect(() => {
     updateResultado()
   }, [dados]);
 
-  _renderItem = ({item, index}) => {
+  _renderItem = ({ item, index }) => {
     return (
       <View style={styles.resultadosContainer} elevation={10}>
         <View style={styles.cardTextPadding}>
@@ -91,7 +95,7 @@ export default function ResultadosScreen({ route, navigation }) {
         </TouchableOpacity>
       </View>
     );
-}
+  }
 
   const handleRoadmapPress = (url) => {
     Linking.canOpenURL(url).then(supported => {
@@ -112,11 +116,11 @@ export default function ResultadosScreen({ route, navigation }) {
 
   return (
     <View style={styles.container}>
-      <View style = {{height: StatusBar.currentHeight, backgroundColor: '#FFF'}} />
+      <View style={{ height: StatusBar.currentHeight, backgroundColor: '#FFF' }} />
       <View style={styles.header}>
         <Text style={styles.headerText}>Suas aptidões</Text>
       </View>
-      <View style = {styles.horizFlex}>
+      <View style={styles.horizFlex}>
         <PieChart
           data={buildData()}
           width={200}
@@ -129,7 +133,7 @@ export default function ResultadosScreen({ route, navigation }) {
           hasLegend={false}
         />
         <View style={styles.legendContainer}>
-          {buildData().map(({name, color}) => {
+          {buildData().map(({ name, color }) => {
             return <Legend key={name} name={name} color={color} />;
           })}
         </View>
@@ -143,24 +147,27 @@ export default function ResultadosScreen({ route, navigation }) {
           renderItem={this._renderItem}
           sliderWidth={Dimensions.get('window').width}
           itemWidth={Dimensions.get('window').width - 80}
-          onSnapToItem={(index) => setActiveSlide(index) }
+          onSnapToItem={(index) => setActiveSlide(index)}
         />
         <Pagination
           dotsLength={buildData().length}
           activeDotIndex={activeSlide}
-          containerStyle={{  }}
+          containerStyle={{}}
           dotStyle={{
-              width: 10,
-              height: 10,
-              borderRadius: 5,
-              marginHorizontal: 8,
-              backgroundColor: 'rgba(100, 100, 100, 0.92)'
+            width: 10,
+            height: 10,
+            borderRadius: 5,
+            marginHorizontal: 8,
+            backgroundColor: 'rgba(100, 100, 100, 0.92)'
           }}
           inactiveDotOpacity={0.4}
           inactiveDotScale={0.6}
         />
       </View>
-
+      
+      <TouchableOpacity style={[styles.buttonVoltar, styles.actionButton]} onPress={handleIndexPress}>
+        <Text style={styles.buttonText}>Voltar ao início</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -227,5 +234,15 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     color: 'white',
+  },
+  buttonVoltar: {
+    width: '80%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 35,
+    paddingVertical: 20,
+    marginTop: 30,
+    backgroundColor: '#000',
+    alignSelf: 'center',
   },
 });

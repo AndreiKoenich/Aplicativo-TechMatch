@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Image } from 'react-native';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import PerfilButton from './Perfil/PerfilButton';
@@ -38,17 +38,26 @@ export default function TelaInicial() {
   return (
     <View style={styles.flexBox}>
       <View>
-      <Text style={styles.titleText}>Bem-Vindo!</Text>
+        <View >
+          <Image source={require('../../assets/logo.png')} style={{
+            width: 500,
+            height: 100,
+            maxHeight: '100%',
+            maxWidth: '100%',
+            position: 'relative',
+          }} />
+        </View>
+        <Text style={styles.titleText}>Bem-Vindo!</Text>
 
-      <Text style={styles.subtitleText}>Selecione o perfil:</Text>
+        <Text style={styles.subtitleText}>Selecione o perfil:</Text>
 
-      {/* Botões correspondentes aos perfis cadastrados */}
-      <ScrollView style={styles.scrollContainer}>
-        {perfis.map((perfil, index) => (
+        {/* Botões correspondentes aos perfis cadastrados */}
+        <ScrollView style={styles.scrollContainer}>
+          {perfis.map((perfil, index) => (
             <PerfilButton key={index} perfil={perfil} onPress={handlePerfilPress} />
           ))}
-      </ScrollView>
-    </View>
+        </ScrollView>
+      </View>
 
       {/* Botão para criar um novo perfil */}
       <TouchableOpacity style={styles.button} onPress={handleNovoPerfilPress}>
