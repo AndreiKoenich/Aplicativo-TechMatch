@@ -117,7 +117,6 @@ export const PERGUNTASDATA = [
             'TestNG',
             'Tidyverse',
             'TOGAF (The Open Group Architecture Framework)',
-            'TOGAF',
             'UML (Unified Modeling Language)',
             'Unit',
             'Unreal Engine',
