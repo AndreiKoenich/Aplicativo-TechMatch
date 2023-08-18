@@ -382,5 +382,14 @@ export let encontrarVagaAdequada = function(dados) {
 
   vagasComPontuacao.sort((a, b) => { return b.pontuacao - a.pontuacao })
 
+  // Ordenar as vagas pelo salário em ordem decrescente e, em caso de empate, pela pontuação
+  vagasComPontuacao.sort((a, b) => {
+    if (b.salario_medio !== a.salario_medio) {
+      return b.salario_medio - a.salario_medio;
+    } else {
+      return b.pontuacao - a.pontuacao;
+    }
+  });
+
   return vagasComPontuacao.slice(0,3);
 };
