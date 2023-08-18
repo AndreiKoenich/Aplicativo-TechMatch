@@ -174,13 +174,13 @@ export const PERGUNTASDATA = [
     {
         key: 'experienciaCommerce',
         isMultipleChoice: false,
-        titulo: "Você possui experiência ou interesse em projetos de e-commerce ou sistemas de pagamento online?",
+        titulo: "Você possui experiência com projetos de e-commerce ou sistemas de pagamento online?",
         respostas: ['Sim', 'Não']
     },
     {
         key: 'experienciaAplicativo',
         isMultipleChoice: false,
-        titulo: "Você possui experiência ou interesse em desenvolvimento de aplicativos para dispositivos móveis?",
+        titulo: "Você possui experiência com desenvolvimento de aplicativos para dispositivos móveis?",
         respostas: ['Sim', 'Não']
     },
     {
