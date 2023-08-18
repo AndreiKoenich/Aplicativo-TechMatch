@@ -47,7 +47,7 @@ export const PERGUNTASDATA = [
         key: 'sistemas',
         isMultipleChoice: true,
         titulo: "Quais sistemas operacionais você conhece?",
-        respostas: ['Android', 'Linux', 'macOS', 'UNIX', 'Windows']
+        respostas: ['Android', 'ChromeOS','iOS','Junos', 'Linux', 'macOS', 'Unix', 'Windows' ]
     },
     {
         key: 'tempoExperiencia',
