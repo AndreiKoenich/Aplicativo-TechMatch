@@ -350,6 +350,11 @@ export let encontrarVagaAdequada = function(dados) {
     const intersecaoLinguagens = (vaga.linguagens || []).filter(linguagem => linguagensUsuario.has(linguagem));
     pontuacao += intersecaoLinguagens.length;
 
+      // Verifica a intersecção entre os sistemas operacionais da vaga e do usuário
+      const sistemasUsuario = new Set(dados.sistemas || []);
+      const intersecaoSistemas = (vaga.sistemas || []).filter(sistemas => sistemasUsuario.has(sistemas));
+      pontuacao += intersecaoSistemas.length;
+
     // Verifica a intersecção entre os frameworks da vaga e do usuário
     const frameworksUsuario = new Set(dados.frameworks || []);
     const intersecaoFrameworks = (vaga.frameworks || []).filter(framework => frameworksUsuario.has(framework));
