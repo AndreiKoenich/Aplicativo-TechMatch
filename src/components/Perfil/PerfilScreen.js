@@ -71,33 +71,45 @@ export default function PerfilScreen({ route, navigation }) {
 
   return (
     <View style={styles.container}>
-        <Text style={styles.headerText}>Bem-vindo, {nome}!</Text>
+      <Text style={styles.headerText}>Bem-vindo, {nome}!</Text>
 
-        <View style={styles.buttonsContainer}>
-          <TouchableOpacity
-            style={[styles.button, styles.actionButton]}
-            onPress={handleRealizarTeste}
-          >
-            <Text style={styles.buttonText}>Realizar teste</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={[styles.button, perfilAtual.resultado !== undefined ? styles.actionButton : styles.buttonDisabled]} onPress={handleVerResultado}>
-            <Text style={styles.buttonText}>Ver último resultado</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={[styles.button, styles.actionButton]} onPress={navigation.goBack}>
-            <Text style={styles.buttonText}>Alterar usuário</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={[styles.button, styles.deleteButton]} onPress={handleExcluirPerfil}>
-            <Text style={styles.excluirIcon}>X</Text>
-            <Text style={styles.buttonText}>Excluir perfil</Text>
-          </TouchableOpacity>
-        </View>
+    <View style={styles.userInfoContainer}>
+      <Text style={styles.userInfoText}>Nome: {perfilAtual.nome}</Text>
+      <Text style={styles.userInfoText}>E-mail: {perfilAtual.email}</Text>
+      <Text style={styles.userInfoText}>Idade: {perfilAtual.idade} anos</Text>
+    </View>
 
 
-      <View style={{marginLeft: 'auto', marginBottom: 32}}>
-        <Image source={require('../../../assets/logo.png')} style={{width: 200, height: 100, resizeMode: 'contain'}}/>
+      <View style={styles.buttonsContainer}>
+        <TouchableOpacity
+          style={[styles.button, styles.actionButton]}
+          onPress={handleRealizarTeste}
+        >
+          <Text style={styles.buttonText}>Realizar teste</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={[styles.button, perfilAtual.resultado !== undefined ? styles.actionButton : styles.buttonDisabled]} onPress={handleVerResultado}>
+          <Text style={styles.buttonText}>Ver último resultado</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={[styles.button, styles.actionButton]}
+        onPress={() => navigation.navigate('MudarCadastro', { isEditing: true, perfilAtual })}
+      >
+        <Text style={styles.buttonText}>Alterar dados de cadastro</Text>
+      </TouchableOpacity>
+
+        <TouchableOpacity style={[styles.button, styles.actionButton]} onPress={navigation.goBack}>
+          <Text style={styles.buttonText}>Alterar usuário</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={[styles.button, styles.deleteButton]} onPress={handleExcluirPerfil}>
+          <Text style={styles.excluirIcon}>X</Text>
+          <Text style={styles.buttonText}>Excluir perfil</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={{ marginLeft: 'auto', marginBottom: 32 }}>
+        <Image source={require('../../../assets/logo.png')} style={{ width: 200, height: 100, resizeMode: 'contain' }} />
       </View>
     </View>
   );
@@ -117,8 +129,17 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 24,
   },
+  userInfoContainer: {
+    marginTop: 4, // Ajuste o espaçamento conforme necessário
+  },
+  userInfoText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'left',
+    marginTop: 10
+  },  
   buttonsContainer: {
-    marginTop: 0
+    marginTop: 0,
   },
   itemContainer: {
     flexDirection: 'row',

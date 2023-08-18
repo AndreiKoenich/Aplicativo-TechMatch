@@ -164,8 +164,7 @@ const styles = StyleSheet.create({
     borderColor: 'black', // Cor da borda quando o campo está preenchido
   },
   placeholderText: {
-    color: '#888',
-    fontSize: 16,
+ 
   },
   placeholderTextSelected: {
     color: 'black', // Cor do texto quando o campo está selecionado
