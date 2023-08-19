@@ -71,7 +71,7 @@ export default function PerfilScreen({ route, navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.headerText}>Bem-vindo, {nome}!</Text>
+      <Text style={styles.headerText}>Bem-vindo, {nome.split(' ')[0]}!</Text>
 
     <View style={styles.userInfoContainer}>
       <Text style={styles.userInfoText}>Nome: {perfilAtual.nome}</Text>
