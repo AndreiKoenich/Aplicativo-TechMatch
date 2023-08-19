@@ -37,18 +37,6 @@ export default function TelaInicial() {
 
   return (
     <View style={styles.flexBox}>
-      <Image
-        source={require('../../assets/logo_tela_inicial.jpg')}
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          zIndex: -1,
-          opacity: 0.07
-        }}
-      />
 
       <View>
         <Text style={styles.titleText}>Bem-Vindo!</Text>
@@ -61,6 +49,7 @@ export default function TelaInicial() {
             <PerfilButton key={index} perfil={perfil} onPress={handlePerfilPress} />
           ))}
         </ScrollView>
+
       </View>
 
       {/* Botão para criar um novo perfil */}
