@@ -8,7 +8,7 @@ export default function PerfilScreen({ route, navigation }) {
   const { perfilAtual, vagaRecomendada } = route.params;
 
   if(perfilAtual && perfilAtual.nome != nome) {
-    setNome(perfilAtual.nome.split(' ')[0])
+    setNome(perfilAtual.nome)
     if(perfilAtual.resultado) {
       setResultado(perfilAtual.resultado)
     }
