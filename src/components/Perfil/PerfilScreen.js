@@ -36,7 +36,11 @@ export default function PerfilScreen({ route, navigation }) {
       if (perfisData) {
         const perfis = JSON.parse(perfisData);
         // Excluir o perfil da lista de perfis
-        const novosPerfis = perfis.filter((perfil) => perfil.nome !== perfilAtual.nome);
+        const novosPerfis = perfis.filter((perfil) => (
+          perfil.nome !== perfilAtual.nome ||
+          perfil.email !== perfilAtual.email ||
+          perfil.idade !== perfilAtual.idade
+        ));
         // Salvar a nova lista de perfis no AsyncStorage
         await AsyncStorage.setItem('perfis', JSON.stringify(novosPerfis));
         console.log('Perfil excluído com sucesso!');
