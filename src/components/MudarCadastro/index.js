@@ -27,7 +27,7 @@ export default function MudarCadastro({ route, navigation }) {
           perfis[index] = { ...perfis[index], nome, email, idade: parseInt(idade) };
           await AsyncStorage.setItem('perfis', JSON.stringify(perfis));
           console.log('Dados de cadastro alterados com sucesso!');
-          navigation.goBack();
+          navigation.navigate('TelaInicial');
         }
       }
     } catch (error) {
