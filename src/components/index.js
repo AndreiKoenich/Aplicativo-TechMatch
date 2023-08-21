@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Image } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, ImageBackground } from 'react-native';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import PerfilButton from './Perfil/PerfilButton';
@@ -36,30 +36,37 @@ export default function TelaInicial() {
   };
 
   return (
-    <View style={styles.flexBox}>
 
-      <View>
-        <Text style={styles.titleText}>Bem-Vindo!</Text>
+    <ImageBackground
+      source={require('../../assets/logo_tela_inicial.jpg')}
+      style={styles.backgroundImage}
+      opacity={0.07} // Ajuste a opacidade aqui
+    >
+      <View style={styles.flexBox}>
 
-        <Text style={styles.subtitleText}>Selecione o perfil:</Text>
+        <View>
+          <Text style={styles.titleText}>Bem-Vindo!</Text>
 
-        {/* Botões correspondentes aos perfis cadastrados */}
-        <ScrollView style={styles.scrollContainer}>
-          {perfis.map((perfil, index) => (
-            <PerfilButton key={index} perfil={perfil} onPress={handlePerfilPress} />
-          ))}
-        </ScrollView>
+          <Text style={styles.subtitleText}>Selecione o perfil:</Text>
 
-      </View>
+          {/* Botões correspondentes aos perfis cadastrados */}
+          <ScrollView style={styles.scrollContainer}>
+            {perfis.map((perfil, index) => (
+              <PerfilButton key={index} perfil={perfil} onPress={handlePerfilPress} />
+            ))}
+          </ScrollView>
 
-      {/* Botão para criar um novo perfil */}
-      <TouchableOpacity style={styles.button} onPress={handleNovoPerfilPress}>
-        <View style={styles.plusView}>
-          <Text style={styles.buttonPluxText}>+</Text>
         </View>
-        <Text style={styles.buttonText}>Novo Perfil</Text>
-      </TouchableOpacity>
-    </View>
+
+        {/* Botão para criar um novo perfil */}
+        <TouchableOpacity style={styles.button} onPress={handleNovoPerfilPress}>
+          <View style={styles.plusView}>
+            <Text style={styles.buttonPluxText}>+</Text>
+          </View>
+          <Text style={styles.buttonText}>Novo Perfil</Text>
+        </TouchableOpacity>
+      </View >
+    </ImageBackground>
   );
 }
 
@@ -117,4 +124,8 @@ const styles = StyleSheet.create({
     width: 30,
     marginRight: 10,
   },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover'
+  }
 });
