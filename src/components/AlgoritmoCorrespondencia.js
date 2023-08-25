@@ -310,10 +310,10 @@ export let encontrarVagaAdequada = function(dados) {
   function calcularPontuacao(vaga) {
     let pontuacao = 0;
 
-    // Verifica a escolaridade
+    /* Verifica a escolaridade
     if (dados.escolaridade === vaga.escolaridade) {
       pontuacao += 5;
-    }
+    }*/
 
     // Verifica a experiência com aplicativos
     if (dados.experienciaAplicativo === "Sim" && vaga.experiencia_desenvolvimento_mobile) {
@@ -350,28 +350,55 @@ export let encontrarVagaAdequada = function(dados) {
     const intersecaoLinguagens = (vaga.linguagens || []).filter(linguagem => linguagensUsuario.has(linguagem));
     pontuacao += intersecaoLinguagens.length;
 
-      // Verifica a intersecção entre os sistemas operacionais da vaga e do usuário
-      const sistemasUsuario = new Set(dados.sistemas || []);
-      const intersecaoSistemas = (vaga.sistemas || []).filter(sistemas => sistemasUsuario.has(sistemas));
-      pontuacao += intersecaoSistemas.length;
+    // Verifica a intersecção entre os sistemas operacionais da vaga e do usuário
+    const sistemasUsuario = new Set(dados.sistemas || []);
+    const intersecaoSistemas = (vaga.sistemas || []).filter(sistemas => sistemasUsuario.has(sistemas));
+    pontuacao += intersecaoSistemas.length;
 
-    // Verifica a intersecção entre os frameworks da vaga e do usuário
+    // Verifica a intersecção entre os frameworks da vaga e os frameworks do usuário
     const frameworksUsuario = new Set(dados.frameworks || []);
     const intersecaoFrameworks = (vaga.frameworks || []).filter(framework => frameworksUsuario.has(framework));
     pontuacao += intersecaoFrameworks.length;
 
+    // Verifica a intersecção entre os frameworks da vaga e as tecnologias gerais do usuário
+    const tecnologiasGeraisUsuario = new Set(dados.tecnologiasGerais || []);
+    const intersecaoTecnologiasGerais = (vaga.frameworks || []).filter(tecnologiaGeral => tecnologiasGeraisUsuario.has(tecnologiaGeral));
+    pontuacao += intersecaoTecnologiasGerais.length;
+
+    // Verifica a intersecção entre os frameworks da vaga e as bibliotecas do usuário
+    const bibliotecasUsuario = new Set(dados.bibliotecas || []);
+    const intersecaoBibliotecas = (vaga.frameworks || []).filter(biblioteca => bibliotecasUsuario.has(biblioteca));
+    pontuacao += intersecaoBibliotecas.length;
+
     // Verifica a intersecção entre as tecnologias emergentes da vaga e do usuário
-    const tecnologiasUsuario = new Set(dados.tecnologiasEmergentes || []);
-    const intersecaoTecnologias = (vaga.tecnologias || []).filter(tecnologia => tecnologiasUsuario.has(tecnologia));
+    const tecnologiasEmergentesUsuario = new Set(dados.tecnologiasEmergentes || []);
+    const intersecaoTecnologias = (vaga.tecnologias || []).filter(tecnologia => tecnologiasEmergentesUsuario.has(tecnologia));
     pontuacao += intersecaoTecnologias.length;
 
-    // Verifica o tempo de experiência
+    /* Verifica o tempo de experiência
     if (dados.tempoExperiencia === vaga.tempoExperiencia) {
       pontuacao += 3;
-    }
+    }*/
 
     return pontuacao;
   }
+
+  // Impressão no console para identificar os dados do usuário
+  console.log("Dados do Usuário:");
+  console.log(`Escolaridade: ${dados.escolaridade}`);
+  console.log(`Experiência com Aplicativos: ${dados.experienciaAplicativo}`);
+  console.log(`Experiência com Bancos de Dados: ${dados.experienciaBancoDados}`);
+  console.log(`Experiência com Comércio Eletrônico: ${dados.experienciaCommerce}`);
+  console.log(`Experiência com Migração de Sistemas Legados: ${dados.experienciaLegados}`);
+  console.log(`Experiência com Metodologias Ágeis: ${dados.experienciaMetodologia}`);
+  console.log(`Experiência com Redes de Computadores: ${dados.experienciaRedes}`);
+  console.log(`Linguagens: ${dados.linguagens}`);
+  console.log(`Frameworks: ${dados.frameworks}`);
+  console.log(`Bibliotecas: ${dados.bibliotecas}`);
+  console.log(`Tecnologias Gerais: ${dados.tecnologiasGerais}`);
+  console.log(`Tecnologias Emergentes: ${dados.tecnologiasEmergentes}`);
+  console.log(`Tempo de Experiência: ${dados.tempoExperiencia}`);
+  console.log(`Sistemas Operacionais: ${dados.sistemas}`);
 
   let vagasComPontuacao = [];
 
@@ -380,7 +407,14 @@ export let encontrarVagaAdequada = function(dados) {
     vagasComPontuacao.push({ nome: nomeVaga, descricao: vaga.descricao, salario_medio: vaga.salario_medio, url: vaga.url ?? "https://roadmap.sh/roadmaps", pontuacao: pontuacaoAtual })
   }
 
-  vagasComPontuacao.sort((a, b) => { return b.pontuacao - a.pontuacao })
+  const vagasSelecionadas = vagasComPontuacao.slice(0, 3);
 
-  return vagasComPontuacao.slice(0,3);
+  // Impressões no console para identificar as vagas mapeadas e as pontuações
+  console.log("Vagas mapeadas para o usuário:");
+  for (const vaga of vagasSelecionadas) {
+    console.log(`- Vaga: ${vaga.nome}`);
+    console.log(`  Pontuação de Intersecção: ${vaga.pontuacao}`);
+  }
+
+  return vagasSelecionadas;
 };
