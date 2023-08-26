@@ -317,32 +317,32 @@ export let encontrarVagaAdequada = function(dados) {
 
     // Verifica a experiência com aplicativos
     if (dados.experienciaAplicativo === "Sim" && vaga.experiencia_desenvolvimento_mobile) {
-      pontuacao += 3;
+      pontuacao += 1;
     }
 
     // Verifica a experiência com bancos de dados
     if (dados.experienciaBancoDados === "Sim" && vaga.experiencia_banco_dados) {
-      pontuacao += 4;
+      pontuacao += 1;
     }
 
     // Verifica a experiência com projetos de e-commerce
     if (dados.experienciaCommerce === "Sim" && vaga.experiencia_e_commerce) {
-      pontuacao += 2;
+      pontuacao += 1;
     }
 
     // Verifica a experiência com migração de sistemas legados
     if (dados.experienciaLegados === "Sim" && vaga.experiencia_migracao_legados) {
-      pontuacao += 3;
+      pontuacao += 1;
     }
 
     // Verifica a experiência com metodologias ágeis
     if (dados.experienciaMetodologia === "Sim" && vaga.experiencia_desenvolvimento_agil) {
-      pontuacao += 4;
+      pontuacao += 1;
     }
 
     // Verifica a experiência com redes de computadores
     if (dados.experienciaRedes === "Sim" && vaga.experiencia_redes) {
-      pontuacao += 4;
+      pontuacao += 1;
     }
 
     // Verifica a intersecção entre as linguagens de programação da vaga e do usuário
@@ -407,6 +407,7 @@ export let encontrarVagaAdequada = function(dados) {
     vagasComPontuacao.push({ nome: nomeVaga, descricao: vaga.descricao, salario_medio: vaga.salario_medio, url: vaga.url ?? "https://roadmap.sh/roadmaps", pontuacao: pontuacaoAtual })
   }
 
+  vagasComPontuacao.sort((a, b) => { return b.pontuacao - a.pontuacao }) /* LINHA MAIS IMPORTANTE, VERIFICA AS TRÊS MELHORES VAGAS PARA O USUÁRIO!! */
   const vagasSelecionadas = vagasComPontuacao.slice(0, 3);
 
   // Impressões no console para identificar as vagas mapeadas e as pontuações
