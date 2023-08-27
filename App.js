@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import TelaInicial from './src/components';
+import RoteiroEstudosScreen from './src/components/RoteiroEstudosScreen'
 import Cadastro from './src/components/Cadastro';
 import MudarCadastro from './src/components/MudarCadastro';
 import Questionario from './src/components/Questionario';
@@ -57,6 +58,7 @@ export default function App() {
         <Stack.Screen name="PerguntaUnicaEscolhaScreen" component={PerguntaUnicaEscolhaScreen} />
         <Stack.Screen name="PerguntaMultiplaEscolhaScreen" component={PerguntaMultiplaEscolhaScreen} />
         <Stack.Screen name="ResultadosScreen" component={ResultadosScreen} />
+        <Stack.Screen name="RoteiroEstudosScreen" component={RoteiroEstudosScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

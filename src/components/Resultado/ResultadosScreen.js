@@ -35,6 +35,10 @@ export default function ResultadosScreen({ route, navigation }) {
     navigation.navigate('TelaInicial');
   };
 
+  const handleRoteiroEstudosScreenPress = (vaga) => {
+    navigation.navigate('RoteiroEstudosScreen', vaga);
+  };
+
   const buildData = () => {
     colorIndexes = ["#ae2c29", "#332625", "#bcafb6"]
 
@@ -90,6 +94,11 @@ export default function ResultadosScreen({ route, navigation }) {
           <Text style={styles.subtitulo}>Descrição:</Text>
           <Text style={styles.descricaoText}>{item.descricao}</Text>
         </View>
+
+        <TouchableOpacity style={[styles.button]} onPress={() =>handleRoteiroEstudosScreenPress(item)}>
+          <Text style={styles.buttonText}>Ir para Roteiro de estudos</Text>
+        </TouchableOpacity>
+
         <TouchableOpacity style={[styles.button]} onPress={() => handleRoadmapPress(item.url)}>
           <Text style={styles.buttonText}>Ir para roadmap</Text>
         </TouchableOpacity>
@@ -164,7 +173,7 @@ export default function ResultadosScreen({ route, navigation }) {
           inactiveDotScale={0.6}
         />
       </View>
-      
+
       <TouchableOpacity style={[styles.buttonVoltar, styles.actionButton]} onPress={handleIndexPress}>
         <Text style={styles.buttonText}>Voltar ao início</Text>
       </TouchableOpacity>
