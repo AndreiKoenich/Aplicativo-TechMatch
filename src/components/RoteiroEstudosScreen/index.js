@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, LogBox } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 const vagas = {
@@ -101,6 +101,10 @@ const vagas = {
 
 export default function RoteiroEstudosScreen({ route }) {
   const vagaInfo = route.params;
+
+  LogBox.ignoreLogs([
+    'Non-serializable values were found in the navigation state',
+  ]);
 
   return (
     <ScrollView style={styles.container}>
@@ -541,7 +545,7 @@ export default function RoteiroEstudosScreen({ route }) {
         </View>
       )}
 
-      {vagaInfo.name === 'Desenvolvedor Front-End' && (
+      {vagaInfo.name === 'Desenvolvedor Front-end' && (
         <View>
           <Text style={styles.subtitle}>Nível Básico:</Text>
           <Text style={styles.topic}>HTML (HyperText Markup Language):</Text>
@@ -669,7 +673,7 @@ export default function RoteiroEstudosScreen({ route }) {
         </View>
       )}
 
-      {vagaInfo.name === 'Desenvolvedor Full-Stack' && (
+      {vagaInfo.name === 'Desenvolvedor Full-stack' && (
         <View>
           <Text style={styles.subtitle}>Nível Básico:</Text>
           <Text style={styles.topic}>HTML (HyperText Markup Language):</Text>
