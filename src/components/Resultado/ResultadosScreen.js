@@ -5,8 +5,11 @@ import { PieChart } from 'react-native-chart-kit';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { encontrarVagaAdequada } from '../AlgoritmoCorrespondencia';
 import Legend from './Legend';
+import { LogBox } from 'react-native';
 
 export default function ResultadosScreen({ route, navigation }) {
+
+  LogBox.ignoreAllLogs()
   // Extrair os dados recebidos dos parâmetros da rota
   const [activeSlide, setActiveSlide] = useState(0);
   const dados = route.params.dados;
@@ -95,13 +98,10 @@ export default function ResultadosScreen({ route, navigation }) {
           <Text style={styles.descricaoText}>{item.descricao}</Text>
         </View>
 
-        <TouchableOpacity style={[styles.button]} onPress={() =>handleRoteiroEstudosScreenPress(item)}>
+        <TouchableOpacity style={[styles.button]} onPress={() => handleRoteiroEstudosScreenPress(item)}>
           <Text style={styles.buttonText}>Ir para Roteiro de estudos</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.button]} onPress={() => handleRoadmapPress(item.url)}>
-          <Text style={styles.buttonText}>Ir para roadmap</Text>
-        </TouchableOpacity>
       </View>
     );
   }
@@ -174,9 +174,15 @@ export default function ResultadosScreen({ route, navigation }) {
         />
       </View>
 
-      <TouchableOpacity style={[styles.buttonVoltar, styles.actionButton]} onPress={handleIndexPress}>
-        <Text style={styles.buttonText}>Voltar ao início</Text>
-      </TouchableOpacity>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={[styles.buttonVoltar]} onPress={() => handleRoadmapPress('https://roadmap.sh/roadmaps')}>
+          <Text style={styles.buttonText}>Ir para roadmap</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={[styles.buttonVoltar, styles.actionButton]} onPress={handleIndexPress}>
+          <Text style={styles.buttonText}>Voltar ao início</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -245,13 +251,17 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   buttonVoltar: {
-    width: '80%',
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 35,
     paddingVertical: 20,
-    marginTop: 30,
     backgroundColor: '#000',
-    alignSelf: 'center',
+    marginRight: 15, // Espaçamento à direita para separar os botões
+  },
+  buttonContainer: {
+    flexDirection: 'row', // Isso alinhará os botões horizontalmente
+    justifyContent: 'space-between', // Isso distribuirá o espaço igualmente entre os botões
+    paddingHorizontal: 20, // Adicione algum espaço horizontal para separar os botões
   },
 });

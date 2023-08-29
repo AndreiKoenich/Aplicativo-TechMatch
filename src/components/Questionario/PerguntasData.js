@@ -11,6 +11,19 @@ export const PERGUNTASDATA = [
         ]
     },
     {
+        key: 'tempoExperiencia',
+        isMultipleChoice: false,
+        titulo: "Quanto tempo de experiência com programação você possui?",
+        respostas: [
+            'Menos de um ano',
+            '1 ano',
+            '2 anos',
+            '3 anos',
+            '4 anos',
+            '5 ou mais anos',
+          ]
+    },
+    {
         key: 'linguagens',
         isMultipleChoice: true,
         titulo: "Com quais linguagens de programação você possui experiência?",
@@ -48,19 +61,6 @@ export const PERGUNTASDATA = [
         isMultipleChoice: true,
         titulo: "Com quais dos sistemas operacionais abaixo você possui experiência?",
         respostas: ['Android', 'ChromeOS','iOS','Junos', 'Linux', 'macOS', 'Unix', 'Windows' ]
-    },
-    {
-        key: 'tempoExperiencia',
-        isMultipleChoice: false,
-        titulo: "Quanto tempo de experiência com programação você possui?",
-        respostas: [
-            'Menos de um ano',
-            '1 ano',
-            '2 anos',
-            '3 anos',
-            '4 anos',
-            '5 ou mais anos',
-          ]
     },
     {
         key: 'frameworks',
